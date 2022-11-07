@@ -70,3 +70,32 @@ const task = (a, b) => {
   return a + b;
 };
 console.log(task(5, 6));
+
+//  *** Understanding Spread & Rest Operators ***
+const hobbies4 = ["Sports4", "Coocking4"];
+const copiedArray = hobbies4.slice(); // The slice() method returns selected elements in an array, as a new array.
+console.log(copiedArray);
+
+const hobbies5 = ["Sports5", "Coocking5"];
+const copiedArray2 = [hobbies5]; // Create a nested array
+console.log(copiedArray2);
+
+const hobbies6 = ["Sports6", "Coocking6"];
+const copiedArray3 = [...hobbies6]; // spread operator ( ... ) allows us to quickly copy all or part of an existing array or object into another array or object.
+console.log(copiedArray3);
+
+const person3 = {
+  name: "Amar-person3",
+  age: 26,
+  greet() {
+    console.log("Hi, I am " + this.name);
+  },
+};
+const copiedPerson = { ...person3 }; // spread operator ( ... )
+console.log(copiedPerson);
+
+const toArray = (...args) => {
+  // ( ... ) Rest Operators -> are you using (...) it to merge multiple arguments into an array and you use it in the argument list of a function then it's the Rest Operators.
+  return args;
+};
+console.log(toArray(4, 5, 6, 7));
