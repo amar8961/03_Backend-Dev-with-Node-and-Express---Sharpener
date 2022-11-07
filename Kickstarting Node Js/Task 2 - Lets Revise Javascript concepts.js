@@ -118,3 +118,26 @@ const studenttoArray = (...args) => {
   return args;
 };
 console.log(toArray("AK", "Section-B", "Roll No.-4"));
+
+// *** Difference between fat arrow functions/arrow function & normal function and this keyword ? ***
+class Student {
+  constructor(name, age, marks) {
+    this.name = name;
+    this.age = age;
+    this.marks = marks;
+  }
+  setPlacementAge(minPlacementAge) {
+    console.log(this);
+    return (minMarks) => {
+      console.log("inside egligibleForCurrent Company", this);
+      if (this.marks > minMarks && this.age > minPlacementAge) {
+        console.log(this.name + "is ready for placements");
+      } else {
+        console.log(this.name + "is not ready for placements");
+      }
+    };
+  }
+}
+const Yash = new Student("yash", 25, 75);
+const Vaibhav = new Student("vaibhav", 13, 35);
+Yash.setPlacementAge(18)(40); // (18) for minPlacementAge and (40) for minMarks
