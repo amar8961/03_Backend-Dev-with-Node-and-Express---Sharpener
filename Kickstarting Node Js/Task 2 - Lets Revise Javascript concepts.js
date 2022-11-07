@@ -59,6 +59,8 @@ console.log(hobbies2);
 console.log(hobbies2.map((hobby) => "Hobby: " + hobby)); // map() creates a new array from calling a function for every array element.
 
 //  *** Arrays, Objects & Reference Types ***
+// Object in Arrays are so-called Reference Types
+// therefor when i store an array in a 'const' hobbies3 we can edit this.
 const hobbies3 = ["Sports3", "Coocking3"];
 hobbies3.push("Coding");
 console.log(hobbies3);
