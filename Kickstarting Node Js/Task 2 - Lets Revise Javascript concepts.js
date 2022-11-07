@@ -57,3 +57,8 @@ for (let hobby of hobbies) {
 const hobbies2 = ["Sports2", "Coocking2"];
 console.log(hobbies2);
 console.log(hobbies2.map((hobby) => "Hobby: " + hobby)); // map() creates a new array from calling a function for every array element.
+
+//  *** Arrays, Objects & Reference Types ***
+const hobbies3 = ["Sports3", "Coocking3"];
+hobbies3.push("Coding");
+console.log(hobbies3);
