@@ -1,4 +1,4 @@
-//  Understanding Arrow Functions
+//  *** Understanding Arrow Functions ***
 const name = "Max"; // we can't change 'const' value
 let age = 29; // we can change 'let' value
 const hasHobbies = true;
@@ -32,7 +32,7 @@ console.log(addOne(1));
 const addRandom = () => 2 + 3;
 console.log(addRandom());
 
-//  Working with Objects, Properties & Methods
+//  *** Working with Objects, Properties & Methods ***
 const person = {
   name: "Amar",
   age: 26,
@@ -47,3 +47,13 @@ const person2 = {
   },
 };
 person2.greet();
+
+//  *** Arrays & Array Methods ***
+const hobbies = ["Sports", "Coocking"];
+for (let hobby of hobbies) {
+  console.log(hobby);
+}
+
+const hobbies2 = ["Sports2", "Coocking2"];
+console.log(hobbies2);
+console.log(hobbies2.map((hobby) => "Hobby: " + hobby)); // map() creates a new array from calling a function for every array element.
