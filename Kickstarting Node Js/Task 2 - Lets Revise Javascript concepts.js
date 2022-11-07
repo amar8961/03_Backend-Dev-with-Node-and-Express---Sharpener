@@ -99,3 +99,22 @@ const toArray = (...args) => {
   return args;
 };
 console.log(toArray(4, 5, 6, 7));
+
+//  >>> Task Question - Watch video 15 and create a student object <<<
+const student = {
+  classes: "Class-1 to CLass-10",
+  Section: "A, B, C, D",
+  Estd: 2016,
+};
+const copiedStudent = { ...student }; // / ( ... ) using as spread operator
+console.log(copiedStudent);
+
+const student2 = ["Amar", "Section-A"];
+const copiedStudent2 = [...student2]; // ( ... ) using as spread operator
+console.log(student2);
+
+const studenttoArray = (...args) => {
+  // ( ... ) using as Rest Operator.
+  return args;
+};
+console.log(toArray("AK", "Section-B", "Roll No.-4"));
