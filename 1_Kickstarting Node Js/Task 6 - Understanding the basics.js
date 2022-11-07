@@ -1,4 +1,4 @@
-// Creating a Node Server
+// *** Creating a Node Server ***
 // 1
 const http = require("http");
 function rqListener(req, res) {
@@ -27,7 +27,7 @@ const server = http.createServer((req, res) => {
 });
 server.listen(3000);
 
-// The Node Lifecycle & Event Loop
+// *** The Node Lifecycle & Event Loop ***
 const http = require("http");
 const server2 = http.createServer((req, res) => {
   console.log(req);
