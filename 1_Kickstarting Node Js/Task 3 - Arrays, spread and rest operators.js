@@ -1,64 +1,51 @@
-// // Async Code & Promises
-// // Async Code
-// const fetchData = (callback) => {
-//   setTimeout(() => {
-//     callback("Done!");
-//   }, 1500);
-// };
-
-// // Async / asynchronous code -> because it does not execute immediately.
-// setTimeout(() => {
-//   console.log("Timer is Done");
-//   fetchData((text) => {
-//     console.log(text);
-//   });
-// }, 2000);
-
-// // synchronous code -> because it execute immediately.
-// console.log("Hello!");
-// console.log("Hi!");
-
-// // Promises
-// const fetchData2 = () => {
-//   const promise = new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//       resolve("Promise-Done!");
-//     }, 1500);
-//   });
-//   return promise;
-// };
-
-// // Async / asynchronous code -> because it does not execute immediately.
-// setTimeout(() => {
-//   console.log("Promise-Timer is Done");
-//   fetchData2()
-//     .then((text2) => {
-//       console.log(text2);
-//       return fetchData2();
-//       // again return fetchData2() -> because if we have another use like this.
-//     })
-//     .then((text3) => {
-//       console.log(text3);
-//     });
-// }, 5000); // 5000 millisecond = 5 second
-
-// // synchronous code -> because it execute immediately.
-// console.log("Promise-Hello!");
-// console.log("Promise-Hi!");
-
-// [Watch video 17] and [Watch video 18] are wrong here.
-
+//  *** Task Question ***
+// 2
 const array = ["apple", "oranges", " ", "mango", " ", "lemon"];
 console.log(array);
 const array2 = [];
 array.map((i) => {
-  i === " " ? array2.push("Empty") : array2.push(i);
+  i === " " ? array2.push("empty string") : array2.push(i);
 });
 // array.map((i) => {
 //   if(i===" "){
-//     array2.push("Empty")
+//     array2.push("empty string")
 //   } else {
 //     array2.push(i)
 //   }
 // })
 console.log(array2);
+
+// 3
+// Object in Arrays are so-called Reference Types therefor when we store an array in a 'const' hobbies we can edit this without any error.
+const hobbies3 = ["Sports3", "Coocking3"];
+hobbies3.push("Coding");
+console.log(hobbies3);
+
+// 4) spread operator ( ... )
+const hobbies6 = ["Sports6", "Coocking6"];
+const copiedArray3 = [...hobbies6]; // spread operator ( ... ) allows us to quickly copy all or part of an existing array or object into another array or object.
+console.log(copiedArray3);
+
+// 5) Rest Operators ( ... )
+const toArray = (...args) => {
+  // ( ... ) Rest Operators -> are you using (...) it to merge multiple arguments into an array and you use it in the argument list of a function then it's the Rest Operators.
+  return args;
+};
+console.log(toArray(4, 5, 6, 7));
+
+// What will be the output of this
+// 1) 
+const obj1 = {'key1': 1}
+const obj2 = { ...obj1}
+if(obj2 === obj1){
+console.log('same objects')
+}
+else{
+console.log('different objects')
+}
+
+//2) 
+const obj3 = {'key1': 1 , 'key2' : 2}
+const obj4 = { ...obj3, key1: 1000}
+console.log(obj3)
+console.log(obj4)
