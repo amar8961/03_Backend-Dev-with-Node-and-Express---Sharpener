@@ -45,3 +45,5 @@ setTimeout(() => {
 // synchronous code -> because it execute immediately.
 console.log("Promise-Hello!");
 console.log("Promise-Hi!");
+
+// [Watch video 17] and [Watch video 18] are wrong here.
