@@ -62,3 +62,9 @@ console.log(hobbies2.map((hobby) => "Hobby: " + hobby)); // map() creates a new 
 const hobbies3 = ["Sports3", "Coocking3"];
 hobbies3.push("Coding");
 console.log(hobbies3);
+
+//  >>> Task Question - Write an arrow function which returns the product of two numbers <<<
+const task = (a, b) => {
+  return a + b;
+};
+console.log(task(5, 6));
