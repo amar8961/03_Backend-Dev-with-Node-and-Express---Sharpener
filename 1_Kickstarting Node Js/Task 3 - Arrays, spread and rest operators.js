@@ -50,8 +50,15 @@
 
 const array = ["apple", "oranges", " ", "mango", " ", "lemon"];
 console.log(array);
-const array2 = []
-array.map((l) => {
-  l === " " ? "Empty" : array2.push(l);
+const array2 = [];
+array.map((i) => {
+  i === " " ? array2.push("Empty") : array2.push(i);
 });
-console.log(array2); // map() creates a new array from calling a function for every array element.
+// array.map((i) => {
+//   if(i===" "){
+//     array2.push("Empty")
+//   } else {
+//     array2.push(i)
+//   }
+// })
+console.log(array2);
