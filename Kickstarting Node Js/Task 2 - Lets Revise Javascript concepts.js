@@ -28,5 +28,22 @@ console.log(add1(3, 4));
 const addOne = (a) => a + 1;
 console.log(addOne(1));
 
+//  anonymous arrow function
 const addRandom = () => 2 + 3;
 console.log(addRandom());
+
+//  Working with Objects, Properties & Methods
+const person = {
+  name: "Amar",
+  age: 26,
+};
+console.log(person);
+
+const person2 = {
+  name: "Amar",
+  age: 26,
+  greet() {
+    console.log("Hi, I am " + this.name);
+  },
+};
+person2.greet();
