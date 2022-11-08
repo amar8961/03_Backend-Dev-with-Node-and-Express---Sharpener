@@ -13,6 +13,7 @@
 //   console.log(req.url, req.method, req.headers);
 //   // process.exit(); -> to quit the server
 //   res.setHeader('Content-Type', 'text/html');
+//   res.write('<html>')
 //   res.write('<head><title>My First Page</title></head>')
 //   res.write('<body><h1>Hello from my Node.js Server !</h1></body>')
 //   res.write('</html>')
@@ -36,6 +37,7 @@
 //   console.log(req.url, req.method, req.headers);
 //   // process.exit(); -> to quit the server
 //   res.setHeader('Content-Type', 'text/html');
+//   res.write('<html>')
 //   res.write('<head><title>My First Page</title></head>')
 //   res.write('<body><h1>Hello from my Node.js Server !</h1></body>')
 //   res.write('</html>')
@@ -69,6 +71,7 @@
 //   console.log(req.url, req.method, req.headers);
 //   // process.exit(); -> to quit the server
 //   res.setHeader('Content-Type', 'text/html');
+//   res.write('<html>')
 //   res.write('<head><title>My First Page</title></head>')
 //   res.write('<body><h1>Hello from my Node.js Server !</h1></body>')
 //   res.write('</html>')
@@ -116,6 +119,7 @@
 //   console.log(req.url, req.method, req.headers);
 //   // process.exit(); -> to quit the server
 //   res.setHeader('Content-Type', 'text/html');
+//   res.write('<html>')
 //   res.write('<head><title>My First Page</title></head>')
 //   res.write('<body><h1>Hello from my Node.js Server !</h1></body>')
 //   res.write('</html>')
@@ -144,7 +148,7 @@
 //         console.log(chunk)
 //         body.push(chunk);
 //       });
-//       req.on('end', () => {
+//       return req.on('end', () => {
 //         const parsedBody = Buffer.concat(body).toString()
 //         const message = parsedBody.split('=')[1];
 //         console.log(parsedBody)
@@ -156,6 +160,7 @@
 //     }
 //   console.log(req.url, req.method, req.headers);
 //   res.setHeader('Content-Type', 'text/html');
+//   res.write('<html>')
 //   res.write('<head><title>My First Page</title></head>')
 //   res.write('<body><h1>Hello from my Node.js Server !</h1></body>')
 //   res.write('</html>')
@@ -197,6 +202,7 @@
 //     }
 //   console.log(req.url, req.method, req.headers);
 //   res.setHeader('Content-Type', 'text/html');
+//   res.write('<html>')
 //   res.write('<head><title>My First Page</title></head>')
 //   res.write('<body><h1>Welcome to my Node Js project</h1></body>')
 //   res.write('</html>')
@@ -237,18 +243,21 @@ const server = http.createServer((req, res) => {
       })
     } else if(url === '/home'){
       res.setHeader('Content-Type', 'text/html');
+      res.write('<html>')
       res.write('<head><title>Welcome to About Us page</title></head>')
       res.write('<body><h1>Welcome home</h1></body>')
       res.write('</html>')
       return res.end();  // we have to return to keep server running otherwise server stop working.
     } else if(url === '/about'){
       res.setHeader('Content-Type', 'text/html');
+      res.write('<html>')
       res.write('<head><title>Welcome to About Us page</title></head>')
       res.write('<body><h1>Welcome to About Us page</h1></body>')
       res.write('</html>')
       return res.end()
     } else if(url === '/node'){
       res.setHeader('Content-Type', 'text/html');
+      res.write('<html>')
       res.write('<head><title>My First Page</title></head>')
       res.write('<body><h1>Welcome to my Node Js project</h1></body>')
       res.write('</html>')
@@ -256,6 +265,7 @@ const server = http.createServer((req, res) => {
     }
   console.log(req.url, req.method, req.headers);
   res.setHeader('Content-Type', 'text/html');
+  res.write('<html>')
   res.write('<head><title>My First Page</title></head>')
   res.write('<body><h1>Welcome to my Node Js project</h1></body>')
   res.write('</html>')
