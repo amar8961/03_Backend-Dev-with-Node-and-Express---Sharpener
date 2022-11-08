@@ -18,7 +18,7 @@
 //         console.log(chunk)
 //         body.push(chunk);
 //       });
-//       req.on('end', () => {
+//       return req.on('end', () => {
 //         const parsedBody = Buffer.concat(body).toString()
 //         const message = parsedBody.split('=')[1];
 //         // // with 'writeFileSync' the next line and all other code will not continue to run until that file operation is done.
@@ -32,6 +32,7 @@
 //     }
 //   console.log(req.url, req.method, req.headers);
 //   res.setHeader('Content-Type', 'text/html');
+//   res.write('<html>')
 //   res.write('<head><title>My First Page</title></head>')
 //   res.write('<body><h1>Hello from my Node.js Server !</h1></body>')
 //   res.write('</html>')
@@ -64,6 +65,7 @@
 //   console.log(req.url, req.method, req.headers);
 //   // process.exit(); -> to quit the server
 //   res.setHeader('Content-Type', 'text/html');
+//   res.write('<html>')
 //   res.write('<head><title>My First Page</title></head>')
 //   res.write('<body><h1>Hello from my Node.js Server !</h1></body>')
 //   res.write('</html>')
@@ -111,6 +113,7 @@
 //   console.log(req.url, req.method, req.headers);
 //   // process.exit(); -> to quit the server
 //   res.setHeader('Content-Type', 'text/html');
+//   res.write('<html>')
 //   res.write('<head><title>My First Page</title></head>')
 //   res.write('<body><h1>Hello from my Node.js Server !</h1></body>')
 //   res.write('</html>')
@@ -145,6 +148,7 @@
 //   console.log(req.url, req.method, req.headers);
 //   // process.exit(); -> to quit the server
 //   res.setHeader('Content-Type', 'text/html');
+//   res.write('<html>')
 //   res.write('<head><title>My First Page</title></head>')
 //   res.write('<body><h1>Hello from my Node.js Server !</h1></body>')
 //   res.write('</html>')
@@ -238,6 +242,7 @@ const server = http.createServer((req, res) => {
       })
     } else {
       res.setHeader('Content-Type', 'text/html');
+      res.write('<html>')
       res.write('<head><title>My First Page</title></head>')
       res.write('<body><h1>Hello from my Node.js Server !</h1></body>')
       res.write('</html>')
