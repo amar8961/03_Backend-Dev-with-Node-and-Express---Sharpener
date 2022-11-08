@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const requestHandler = (req, res) => {
+const requestHandler = ((req, res) => {
     const url = req.url;
     const method = req.method;
     if(url === '/') {
@@ -16,13 +16,13 @@ const requestHandler = (req, res) => {
         console.log(chunk)
         body.push(chunk);
       });
-      req.on('end', () => {
+      return req.on('end', () => {
         const parsedBody = Buffer.concat(body).toString()
         const message = parsedBody.split('=')[1];
         // // with 'writeFileSync' the next line and all other code will not continue to run until that file operation is done.
         // fs.writeFileSync('Task 9 - message(Using the Node Modules System).text', message)
-        fs.writeFile('Task 9 - message(Blocking and Non Blocking Code).text', message, err => {
-            res.statusCode = 302; 
+        fs.writeFile('Task 9 - message(Using the Node Modules System).text', message, err => {
+            res.statusCode = 302;
             res.setHeader('Location', '/')
             return res.end();
         })
@@ -30,8 +30,11 @@ const requestHandler = (req, res) => {
     }
     console.log(req.url, req.method, req.headers);
     res.setHeader('Content-Type', 'text/html');
+    res.write('</html>')
     res.write('<head><title>My First Page</title></head>')
     res.write('<body><h1>Hello from my Node.js Server !</h1></body>')
     res.write('</html>')
     res.end()
-}
+});
+
+module.exports = requestHandler;
