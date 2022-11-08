@@ -80,7 +80,6 @@
 //  *** Parsing Request Bodies ***
 const http = require("http");
 const fs = require('fs');  // import 'fs' core module
-const { brotliDecompressSync } = require("zlib");
 
 const server = http.createServer((req, res) => {
     const url = req.url;
