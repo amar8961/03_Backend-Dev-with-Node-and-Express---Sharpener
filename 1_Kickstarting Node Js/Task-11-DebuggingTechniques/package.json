@@ -1,0 +1,11 @@
+{
+  "name": "task-11-debuggingtechniques",
+  "version": "1.0.0",
+  "description": "Complete Node.js Guide",
+  "main": "Task-11-DebuggingTechniques.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Amar Kumar",
+  "license": "ISC"
+}
