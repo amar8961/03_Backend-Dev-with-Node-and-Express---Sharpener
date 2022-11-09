@@ -5,7 +5,8 @@
   "main": "Task 1 - Installation of Node.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": " node Task-10-NodemonAndPackageJSON.js"
+    "start": "node Task-10-NodemonAndPackageJSON.js",
+    "start-server": "node Task-10-NodemonAndPackageJSON.js"
   },
   "author": "Amar Kumar",
   "license": "ISC"
