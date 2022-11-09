@@ -9,5 +9,8 @@
     "start-server": "node Task-10-NodemonAndPackageJSON.js"
   },
   "author": "Amar Kumar",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
 }
