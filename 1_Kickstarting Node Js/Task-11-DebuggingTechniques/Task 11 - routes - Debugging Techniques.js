@@ -18,7 +18,7 @@ const requestHandler = ((req, res) => {
       });
       return req.on('end', () => {
         const parsedBody = Buffer.concat(body).toString()
-        const message = parsedBody.split('=')[1];
+        const message = parsedBody.split('=')[0];
         // // with 'writeFileSync' the next line and all other code will not continue to run until that file operation is done.
         // fs.writeFileSync('Task 9 - message(Using the Node Modules System).text', message)
         fs.writeFile('Task 11 - message(Debugging Techniques).text', message, err => {
