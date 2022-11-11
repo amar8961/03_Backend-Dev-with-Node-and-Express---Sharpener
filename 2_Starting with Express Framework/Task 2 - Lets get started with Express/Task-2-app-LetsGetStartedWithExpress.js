@@ -1,10 +1,10 @@
 //  *** Using the Node Modules System ***
-const http = require('http');
+const http = require("http");
 
-const routes = require('./Task-2-routes-LetsGetStartedWithExpress')
+const express = require("express");
 
-console.log(routes.someText);
+const app = express();
 
-const server = http.createServer(routes.handler);
+const server = http.createServer(app);
 
 server.listen(3000);

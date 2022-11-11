@@ -5,7 +5,7 @@
   "main": "Task-11-DebuggingTechniques.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon Task-11-DebuggingTechniques.js"
+    "start": "nodemon Task-2-app-LetsGetStartedWithExpress.js"
   },
   "author": "Amar Kumar",
   "license": "ISC",
