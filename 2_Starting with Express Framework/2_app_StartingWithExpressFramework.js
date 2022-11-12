@@ -10,9 +10,10 @@ app.use(bodyParser.urlencoded({ extended: false })); // with this we get product
 const adminRoutes = require("./routes/admin");
 const ShopRoutes = require("./routes/shop");
 
-app.use(adminRoutes);
+app.use('/admin', adminRoutes);  // *** Filtering Paths ***
 app.use(ShopRoutes);
 
+// *** Adding a 404 Error Page ***
 app.use((req, res, next) => {
   res.status(404).send('<h1>Page not found</h1>')  // 404 code for Page not found.
 })
