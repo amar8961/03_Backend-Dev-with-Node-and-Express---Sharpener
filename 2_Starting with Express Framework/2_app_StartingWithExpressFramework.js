@@ -8,10 +8,10 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false })); // with this we get product details in TERMINAL as Key : Value
 
 const adminRoutes = require("./routes/admin");
-const ShopRoutes = require("./routes/shop");
+const shopRoutes = require("./routes/shop");  // create shop route
 
 app.use('/admin', adminRoutes);  // *** Filtering Paths ***
-app.use(ShopRoutes);
+app.use(shopRoutes); // use shop route
 
 // *** Adding a 404 Error Page ***
 app.use((req, res, next) => {
