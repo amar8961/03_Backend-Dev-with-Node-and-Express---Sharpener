@@ -6,7 +6,7 @@ const router = express.Router();
 router.get("/login", (req, res, next) => {
   console.log("In another middleware!");
   res.send(
-    '<form action="/product" method="POST"><input type="text" name="title" placeholder="Username"><button type="submit">Login</button></form>'
+    '<form onsubmit="localStorage.setItem(`username`, document.getElementById(`username`).value)" action="/product" method="POST"><input id="username" type="text" name"title"><button type="submit">add</button></form>'
   );
 });
 
