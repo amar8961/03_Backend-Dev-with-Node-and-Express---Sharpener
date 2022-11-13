@@ -14,7 +14,7 @@ router.get("/add-product", (req, res, next) => {
 
 // admin/add-product => POST
 // we reach admin/product because 'admin.js' all files request via '2_app_StartingWithExpressFramework.js' app.use('/admin', adminRoutes);
-router.post("/product", (req, res, next) => {
+router.post("/add-product", (req, res, next) => {
   // console.log(req.body);  // // req.body = [Object: null prototype] { title: 'product' }
   const obj = JSON.parse(JSON.stringify(req.body));
   console.log(obj); // { title: 'product' }
