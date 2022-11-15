@@ -1,5 +1,4 @@
 const fs = require("fs");
-
 const path = require("path");
 
 const p = path.join(
@@ -22,7 +21,7 @@ module.exports = class Cart {
       );
       const existingProduct = cart.products[existingProductIndex];
       let updatedProduct;
-      // Add new product / increase quantity
+      // Add new product/ increase quantity
       if (existingProduct) {
         updatedProduct = { ...existingProduct };
         updatedProduct.qty = updatedProduct.qty + 1;
@@ -32,7 +31,7 @@ module.exports = class Cart {
         updatedProduct = { id: id, qty: 1 };
         cart.products = [...cart.products, updatedProduct];
       }
-      cart.totalPrice = cart.totalPrice + productPrice;
+      cart.totalPrice = cart.totalPrice + +productPrice;
       fs.writeFile(p, JSON.stringify(cart), (err) => {
         console.log(err);
       });
