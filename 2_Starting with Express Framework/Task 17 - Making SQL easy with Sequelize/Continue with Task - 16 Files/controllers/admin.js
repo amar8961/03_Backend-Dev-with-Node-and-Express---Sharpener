@@ -74,9 +74,9 @@ exports.getProducts = (req, res, next) => {
   //     });
   //   })
   Product.findAll()
-    .then((product) => {
+    .then((products) => {
       res.render("admin/products", {
-        prods: product,
+        prods: products,
         pageTitle: "Admin Products",
         path: "/admin/products",
       });
