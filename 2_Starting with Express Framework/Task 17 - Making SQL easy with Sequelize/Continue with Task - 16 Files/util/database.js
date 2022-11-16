@@ -17,4 +17,4 @@ const sequelize = new Sequelize("amar", "root", "123456", {
   host: "localhost",
 });
 
-module.exports = Sequelize;
+module.exports = sequelize;
