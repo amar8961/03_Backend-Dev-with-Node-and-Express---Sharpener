@@ -24,9 +24,10 @@ exports.addData = async (req, res, next) => {
       email: email,
       phone: phone,
     });
-    res.status(201).json({ newBookingDetails: data }); // The HTTP 201 Created success status response code
+    // res.status(201).json({ newBookingDetails: data }); // The HTTP 201 Created success status response code
+    res.sendFile(path.join(rootDir, "views", "home.html"));
     console.log("DATA ADDED");
-    res.redirect("/");
+    
   } catch (err) {
     console.log("ERROR");
     // HTTP 500 Internal Server Error server error response code.
