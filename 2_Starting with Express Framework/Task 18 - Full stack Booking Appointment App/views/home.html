@@ -19,16 +19,14 @@
           Book a Call and our team will call you
         </h4>
         <hr width="100%" size="5px" style="background-color: black" />
-        <form action="#" id="my-form" onsubmit="register() , saveToLocalStorage(event)">
+        <form action="/add" id="my-form" method="POST">
           <div class="msg" style="background-color: green; padding: 5px; margin: 5px"></div>
           <label>Name</label>
-          <input type="text" id="name" placeholder="name" /><br /><br />
+          <input type="text" id="name" name="name" placeholder="name" /><br /><br />
           <label>Email</label>
-          <input type="text" id="email" placeholder="email" /><br /><br />
+          <input type="text" id="email" name="email" placeholder="email" /><br /><br />
           <label>Phone</label>
-          <input type="text" id="phone" placeholder="phone" /><br /><br />
-          <input type="date" id="date" />
-          <input type="time" id="time" /><br /><br />
+          <input type="text" id="phone" name="phone" placeholder="phone" /><br /><br />
           <input class="btn" type="submit" value="get a call" />
           <input class="rbtn" id="rbtn" type="button" value="Reset" />
         </form>
