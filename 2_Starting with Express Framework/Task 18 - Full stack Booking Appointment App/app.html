@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booking Appointment App</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        font-family: sans-serif;
+        text-align: center;
+      }
+      .header {
+        width: 100%;
+        height: 3.5rem;
+        background-color: green;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+      }
+      .form {
+        padding-top: 2cm;
+      }
+      .main-div {
+        border: 5px red solid;
+        background-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <h2>Task 18 - Full stack Booking Appointment App</h2>
+    </header>
+
+    <main>
+      <div class="main-div">
+        <h2 style="text-align: center; color: yellow">BOOK A CALL</h2>
+        <h4 style="text-align: center">
+          Book a Call and our team will call you
+        </h4>
+        <hr width="100%" size="5px" style="background-color: black" />
+        <form action="#" id="my-form" onsubmit="register() , saveToLocalStorage(event)">
+          <div class="msg" style="background-color: green; padding: 5px; margin: 5px"></div>
+          <label>Name</label>
+          <input type="text" id="name" placeholder="name" /><br /><br />
+          <label>Email</label>
+          <input type="text" id="email" placeholder="email" /><br /><br />
+          <label>Phone</label>
+          <input type="text" id="phone" placeholder="phone" /><br /><br />
+          <input type="date" id="date" />
+          <input type="time" id="time" /><br /><br />
+          <input class="btn" type="submit" value="get a call" />
+          <input class="rbtn" id="rbtn" type="button" value="Reset" />
+        </form>
+        <ul id="users"></ul>
+      </div>
+    </main>
+  </body>
+</html>
