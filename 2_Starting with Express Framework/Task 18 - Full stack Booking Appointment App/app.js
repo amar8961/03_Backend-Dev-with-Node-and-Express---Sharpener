@@ -10,4 +10,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const homeRoutes = require("./routes/homeroutes");
 app.use(homeRoutes);
 
+// with this users should be able to access 'public' path // it will take any request that tries to find some file.
+const path = require("path");
+app.use(express.static(path.join(__dirname, "public")));
+
 app.listen(4000);
