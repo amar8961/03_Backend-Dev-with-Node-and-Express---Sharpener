@@ -14,4 +14,14 @@ app.use(homeRoutes);
 const path = require("path");
 app.use(express.static(path.join(__dirname, "public")));
 
-app.listen(4000);
+// Using sequelize database
+const sequelize = require("./util/database");
+sequelize
+  .sync()
+  .then((result) => {
+    // console.log(result);
+    app.listen(4000);
+  })
+  .catch((err) => {
+    console.log(err);
+  });

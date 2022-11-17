@@ -4,6 +4,9 @@ const path = require("path");
 const rootDir = require("../util/path");
 
 exports.getHome = (req, res, next) => {
-  console.log("GIT IT");
+  console.log("GOT IT");
   res.sendFile(path.join(rootDir, "views", "home.html"));
 };
+
+// Import models
+const Booking = require("../models/homemodels");
