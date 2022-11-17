@@ -2,15 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
-// The Path module provides a way of working with directories and file paths.
-const path = require("path");
+const homeController = require("../controllers/homecontrollers");
 
-const rootDir = require("../util/path");
-
-router.get("/", (req, res, next) => {
-  console.log("GIT IT");
-  res.sendFile(path.join(rootDir, "views", "home.html"));
-});
+router.get("/", homeController.getHome);
 
 module.exports = router;
-
