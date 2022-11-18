@@ -18,6 +18,10 @@ app.use(express.static(path.join(__dirname, "public")));
 var cors = require("cors");
 app.use(cors());
 
+// error -> Adding a 404 Error Page
+const errorController = require("./controllers/error");
+app.use(errorController.get404);
+
 // Using sequelize database
 const sequelize = require("./util/database");
 sequelize
