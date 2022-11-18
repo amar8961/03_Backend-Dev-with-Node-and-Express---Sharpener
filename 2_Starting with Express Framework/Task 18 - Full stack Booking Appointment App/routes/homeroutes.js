@@ -10,4 +10,6 @@ router.post("/add", homeController.addData);
 
 router.get("/get-data", homeController.getData);
 
+router.delete("/delete-data/:id", homeController.deleteData);
+
 module.exports = router;

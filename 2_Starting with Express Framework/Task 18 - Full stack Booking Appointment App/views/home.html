@@ -42,7 +42,7 @@
 <!-- store the details entered by the user in the database when he clicks on submit. -->
 <script>
   function saveBookingDetails(event) {
-    event.preventDefault();
+    event.preventDefault();  // To prevent a page from reloading or a new link from opening in jQuery, use the event.preventDefault() method.
     const name = event.target.name.value;
     const email = event.target.email.value;
     const phone = event.target.phone.value;
@@ -85,6 +85,7 @@
       });
   });
 
+  // function for showing Booking details on screen
   // update function showNewUserOnScreen(user) for Deleting the Appointments
   // update function showNewUserOnScreen(user), edit button for Update the user Details
   function showNewUserOnScreen(user) {
@@ -102,36 +103,31 @@
     parentNode.innerHTML = parentNode.innerHTML + childHTML;
   }
 
-  // Delete/Edit data from Local Storage
-  // deleteUse
+  // update function showNewUserOnScreen( ) for Deleting the Appointments database
+  function deleteUser(userId) {
+    axios.delete(`http://localhost:4000/delete-data/${userId}`)
+      .then((response) => {
+        console.log(response);
+        // for delete data from screen
+        removeUserFromScreen(userId);
+      })
+      .catch((err) => {
+        document.body.innerHTML =
+          document.body.innerHTML +
+          "<h4> Something went wrong in .delete</h4>";
+        console.log(err);
+      });
+  }
 
-  // // update function showNewUserOnScreen( ) for Making the Registration Page Dynamic_Task 13 -> Deleting the Appointments
-  // function deleteUser(userId) {
-  //   axios
-  //     .delete(
-  //       `https://crudcrud.com/api/51773efe47b5487cad283e5ab25fd736/taskData/${userId}`
-  //     )
-  //     .then((response) => {
-  //       console.log(response);
-  //       removeUserFromScreen(userId);
-  //     })
-  //     .catch((err) => {
-  //       document.body.innerHTML =
-  //         document.body.innerHTML +
-  //         "<h4> Something went wrong in .delete</h4>";
-  //       console.log(err);
-  //     });
-  // }
+  // update function removeUserFromScreen( ) for Deleting the Appointments from screen
+  function removeUserFromScreen(userId) {
+    const parentNode = document.getElementById("bookings");
+    const childNodeToBeDeleted = document.getElementById(userId);
 
-  // // update function removeUserFromScreen( ) for Making the Registration Page Dynamic_Task 13 -> Deleting the Appointments
-  // function removeUserFromScreen(userId) {
-  //   const parentNode = document.getElementById("listOfUsers");
-  //   const childNodeToBeDeleted = document.getElementById(userId);
-
-  //   if (childNodeToBeDeleted) {
-  //     parentNode.removeChild(childNodeToBeDeleted);
-  //   }
-  // }
+    if (childNodeToBeDeleted) {
+      parentNode.removeChild(childNodeToBeDeleted);
+    }
+  }
 
   // // Edit User
 

@@ -24,7 +24,7 @@ exports.addData = async (req, res, next) => {
       email: email,
       phone: phone,
     });
-    // send data to frontend
+    // newBookingDetails -> send data to frontend
     res.status(201).json({ newBookingDetails: data }); // The HTTP 201 Created success status response code
     // res.sendFile(path.join(rootDir, "views", "home.html"));
   } catch (err) {
@@ -39,11 +39,27 @@ exports.addData = async (req, res, next) => {
 exports.getData = async (req, res, next) => {
   try {
     const booking = await Booking.findAll();
-    res.status(200).json({ allBookings: booking });
+    res.status(200).json({ allBookings: booking });  // allBookings -> send data to frontend
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error });
   }
   // const data = await Booking.findAll();
   // res.status(200).json({ allBookings: data });
+};
+
+exports.deleteData = async (req, res, next) => {
+  try {
+    if (!req.params.id) {
+      console.log("ID IS MISSING");
+      return res.status(400).json({ err: "ID is missing" });
+    }
+    const uId = req.params.id;
+    // destroy method for deleting data.
+    await Booking.destroy({ where: { id: uId } });
+    res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 };
