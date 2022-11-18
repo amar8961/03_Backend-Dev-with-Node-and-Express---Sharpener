@@ -7,3 +7,6 @@ exports.getHome = (req, res, next) => {
   console.log("GOT HOME");
   res.sendFile(path.join(rootDir, "views", "home.html"));
 };
+
+// Import models
+const Expenses = require("../models/homemodels");

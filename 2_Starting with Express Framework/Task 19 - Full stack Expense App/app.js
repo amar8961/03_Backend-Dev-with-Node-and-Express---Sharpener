@@ -14,5 +14,15 @@ app.use(homeRoutes);
 const path = require("path");
 app.use(express.static(path.join(__dirname, "public")));
 
-// to bind and listen the connections on the specified host and port.
-app.listen(5000);
+// Using sequelize database
+const sequelize = require("./util/database");
+sequelize
+  .sync()
+  .then((result) => {
+    // console.log(result);
+    // to bind and listen the connections on the specified host and port.
+    app.listen(5000);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
