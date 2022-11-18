@@ -47,5 +47,22 @@ exports.getData = async (req, res, next) => {
     res.status(500).json({ error: error });
   }
   // const data = await Booking.findAll();
-  // res.status(200).json({ allBookings: data });
+  // res.status(200).json({ newExpenses: data });
+};
+
+// create controller for delete data from database
+exports.deleteData = async (req, res, next) => {
+  try {
+    if (!req.params.id) {
+      console.log("ID IS MISSING");
+      return res.status(400).json({ err: "ID is missing" });
+    }
+    const uId = req.params.id;
+    // destroy method for deleting data.
+    await Expenses.destroy({ where: { id: uId } });
+    res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 };
