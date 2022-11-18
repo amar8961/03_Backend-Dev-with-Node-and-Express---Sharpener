@@ -36,3 +36,16 @@ exports.addData = async (req, res, next) => {
     });
   }
 };
+
+// create controller for get data from database
+exports.getData = async (req, res, next) => {
+  try {
+    const data = await Expenses.findAll();
+    res.status(200).json({ newExpenses: data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error });
+  }
+  // const data = await Booking.findAll();
+  // res.status(200).json({ allBookings: data });
+};
