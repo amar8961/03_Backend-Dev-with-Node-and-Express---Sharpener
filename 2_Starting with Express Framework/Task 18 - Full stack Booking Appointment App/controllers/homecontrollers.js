@@ -24,7 +24,7 @@ exports.addData = async (req, res, next) => {
       email: email,
       phone: phone,
     });
-        // send data to frontend
+    // send data to frontend
     res.status(201).json({ newBookingDetails: data }); // The HTTP 201 Created success status response code
     // res.sendFile(path.join(rootDir, "views", "home.html"));
   } catch (err) {
@@ -34,4 +34,16 @@ exports.addData = async (req, res, next) => {
       error: err,
     });
   }
+};
+
+exports.getData = async (req, res, next) => {
+  try {
+    const booking = await Booking.findAll();
+    res.status(200).json({ allBookings: booking });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error });
+  }
+  // const data = await Booking.findAll();
+  // res.status(200).json({ allBookings: data });
 };
