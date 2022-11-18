@@ -39,20 +39,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js"></script>
 
     <script>
-      // Function for Show User Data On Screen
-      // update function showNewUserOnScreen(user) for Deleting the Data -> Add Delete Button
-      // update function showNewUserOnScreen(user) for Editing the Data -> Add Edit Button
-      function showNewUserOnScreen(user) {
-        const parentNode = document.getElementById("expenseTracker");
-        const childHTML = `<li id=${user._id}> ${user.expenses} - ${user.description} - ${user.category}
-                                 <button onclick=deleteUser('${user._id}')> Delete User </button>
-                                 <button onclick=editUserDetails('${user.expenses}','${user.description}','${user.category}','${user._id}')> Edit </button>
-                           </li>`;
+      // // Function for Show User Data On Screen
+      // // update function showNewUserOnScreen(user) for Deleting the Data -> Add Delete Button
+      // // update function showNewUserOnScreen(user) for Editing the Data -> Add Edit Button
+      // function showNewUserOnScreen(user) {
+      //   const parentNode = document.getElementById("expenseTracker");
+      //   const childHTML = `<li id=${user._id}> ${user.expenses} - ${user.description} - ${user.category}
+      //                            <button onclick=deleteUser('${user._id}')> Delete User </button>
+      //                            <button onclick=editUserDetails('${user.expenses}','${user.description}','${user.category}','${user._id}')> Edit </button>
+      //                      </li>`;
 
-        parentNode.innerHTML = parentNode.innerHTML + childHTML;
-      }
+      //   parentNode.innerHTML = parentNode.innerHTML + childHTML;
+      // }
 
-      // Function for Save User Data On Screen
+      // Function for Save Data On Screen
       function saveToLocalStorage(event) {
         event.preventDefault();
         const expenses = event.target.expenses.value;
@@ -68,13 +68,16 @@
 
         // add axios libraries'post' - Saving the user Details on Crud Crud
         axios
-          .post(
-            "https://crudcrud.com/api/33a34c77d37b40de94d7e07770318fad/taskData",
-            obj
-          )
+          .post("http://localhost:5000/add", obj)
           .then((response) => {
-            showNewUserOnScreen(response.data);
+            // showNewUserOnScreen(response.data.newExpenses);
             console.log(response);
+
+            // After submit clear input field
+            document.getElementById("expenses").value = '';
+            document.getElementById("category").value = '';
+            document.getElementById("category").value = '';
+
           })
           .catch((err) => {
             document.body.innerHTML =
@@ -83,65 +86,65 @@
           });
       }
 
-      // add axios libraries'get' - Get the saved User Details from crudcrud.com
-      // Function for Get the Data from crudcrud.com
-      window.addEventListener("DOMContentLoaded", () => {
-        axios
-          .get(
-            "https://crudcrud.com/api/33a34c77d37b40de94d7e07770318fad/taskData"
-          )
-          .then((response) => {
-            console.log(response);
+      // // add axios libraries'get' - Get the saved User Details from crudcrud.com
+      // // Function for Get the Data from crudcrud.com
+      // window.addEventListener("DOMContentLoaded", () => {
+      //   axios
+      //     .get(
+      //       "https://crudcrud.com/api/33a34c77d37b40de94d7e07770318fad/taskData"
+      //     )
+      //     .then((response) => {
+      //       console.log(response);
 
-            for (var i = 0; i < response.data.length; i++) {
-              showNewUserOnScreen(response.data[i]);
-            }
-          })
-          .catch((err) => {
-            document.body.innerHTML =
-              document.body.innerHTML +
-              "<h4> Something went wrong in .get</h4>";
-            console.log(err);
-          });
-      });
+      //       for (var i = 0; i < response.data.length; i++) {
+      //         showNewUserOnScreen(response.data[i]);
+      //       }
+      //     })
+      //     .catch((err) => {
+      //       document.body.innerHTML =
+      //         document.body.innerHTML +
+      //         "<h4> Something went wrong in .get</h4>";
+      //       console.log(err);
+      //     });
+      // });
 
-      // Function for Deleting the Data of crudcrud.com
-      function deleteUser(userId) {
-        axios
-          .delete(
-            `https://crudcrud.com/api/33a34c77d37b40de94d7e07770318fad/taskData/${userId}`
-          )
-          .then((response) => {
-            console.log(response);
-            removeUserFromScreen(userId);
-          })
-          .catch((err) => {
-            document.body.innerHTML =
-              document.body.innerHTML +
-              "<h4> Something went wrong in .delete</h4>";
-            console.log(err);
-          });
-      }
+      // // Function for Deleting the Data of crudcrud.com
+      // function deleteUser(userId) {
+      //   axios
+      //     .delete(
+      //       `https://crudcrud.com/api/33a34c77d37b40de94d7e07770318fad/taskData/${userId}`
+      //     )
+      //     .then((response) => {
+      //       console.log(response);
+      //       removeUserFromScreen(userId);
+      //     })
+      //     .catch((err) => {
+      //       document.body.innerHTML =
+      //         document.body.innerHTML +
+      //         "<h4> Something went wrong in .delete</h4>";
+      //       console.log(err);
+      //     });
+      // }
 
-      // function for Deleting the Data form Screen
-      function removeUserFromScreen(userId) {
-        const parentNode = document.getElementById("expenseTracker");
-        const childNodeToBeDeleted = document.getElementById(userId);
+      // // function for Deleting the Data form Screen
+      // function removeUserFromScreen(userId) {
+      //   const parentNode = document.getElementById("expenseTracker");
+      //   const childNodeToBeDeleted = document.getElementById(userId);
 
-        if (childNodeToBeDeleted) {
-          parentNode.removeChild(childNodeToBeDeleted);
-        }
-      }
+      //   if (childNodeToBeDeleted) {
+      //     parentNode.removeChild(childNodeToBeDeleted);
+      //   }
+      // }
 
-      // Function for Editing the Data of crudcrud.com
-      function editUserDetails(expenses, description, category, userId) {
-        document.getElementById("expenses").value = expenses;
-        document.getElementById("description").value = description;
-        document.getElementById("category").value = category;
+      // // Function for Editing the Data of crudcrud.com
+      // function editUserDetails(expenses, description, category, userId) {
+      //   document.getElementById("expenses").value = expenses;
+      //   document.getElementById("description").value = description;
+      //   document.getElementById("category").value = category;
 
-        // for delete previous data after clicking on edit button
-        deleteUser(userId);
-      }
+      //   // for delete previous data after clicking on edit button
+      //   deleteUser(userId);
+      // }
     </script>
   </body>
 </html>
