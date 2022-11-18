@@ -17,4 +17,7 @@ router.get("/get-data", homeController.getData);
 // create route for delete data from database
 router.delete("/delete-data/:id", homeController.deleteData);
 
+// create route for edit data from database
+router.delete("/edit-data/:id", homeController.editData);
+
 module.exports = router;

@@ -66,3 +66,24 @@ exports.deleteData = async (req, res, next) => {
     res.status(500).json(err);
   }
 };
+
+// create controller for edit data from database
+// logic is not correct just for try this.
+exports.editData = async (req, res, next) => {
+  try {
+    if (!req.params.id) {
+      console.log("ID IS MISSING");
+      return res.status(400).json({ err: "ID is missing" });
+      // HTTP 400 Bad Request response status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.
+    }
+    const uId = req.params.id;
+    // destroy method for deleting data.
+    await Expenses.upsert({ where: { id: uId } });
+    res.sendStatus(200);
+    // The HTTP 200 OK success status response code indicates that the request has succeeded.
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+    // The HTTP status code 500 is a generic error response. It means that the server encountered an unexpected condition that prevented it from fulfilling the request.
+  }
+};
