@@ -19,7 +19,7 @@
           Book a Call and our team will call you
         </h4>
         <hr width="100%" size="5px" style="background-color: black" />
-        <form action="/add" id="my-form" method="POST">
+        <form action="#" id="my-form" method="POST" onsubmit="saveBookingDetails(event)">
           <div class="msg" style="background-color: green; padding: 5px; margin: 5px"></div>
           <label>Name</label>
           <input type="text" id="name" name="name" placeholder="name" /><br /><br />
@@ -30,8 +30,116 @@
           <input class="btn" type="submit" value="get a call" />
           <input class="rbtn" id="rbtn" type="button" value="Reset" />
         </form>
-        <ul id="users"></ul>
+        <ul id="bookings"></ul>
       </div>
     </main>
   </body>
 </html>
+
+<!-- add axios libraries for Making the Registration Page Dynamic_Task 11 - Saving the user Details on Crud Crud -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js"></script>
+
+<!-- store the details entered by the user in the local storage when he clicks on submit. -->
+<script>
+  function saveBookingDetails(event) {
+    event.preventDefault();
+    const name = event.target.name.value;
+    const email = event.target.email.value;
+    const phone = event.target.phone.value;
+
+    const obj = {
+      name: name,
+      email: email,
+      phone: phone,
+    };
+
+    // add axios libraries'post' for post data and save to database
+    axios.post("http://localhost:4000/add", obj)
+      .then((response) => {
+        // showNewUserOnScreen(response.data.newBookingDetails);
+        console.log(response);
+        // After submit clear input field
+        document.getElementById("name").value = '';
+        document.getElementById("email").value = '';
+        document.getElementById("phone").value = '';
+      })
+      .catch((err) => {
+        document.body.innerHTML =
+          document.body.innerHTML + "<h4> Something went wrong </h4>";
+        console.log(err);
+      });
+  }
+
+  // // add axios libraries'post' for Making the Registration Page Dynamic_Task 12 - Get the saved User Details from crudcrud
+  // window.addEventListener("DOMContentLoaded", () => {
+  //   axios.get("https://crudcrud.com/api/51773efe47b5487cad283e5ab25fd736/taskData")
+  //     .then((response) => {
+  //       console.log(response);
+
+  //       for (var i = 0; i < response.data.length; i++) {
+  //         showNewUserOnScreen(response.data[i]);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       document.body.innerHTML =
+  //         document.body.innerHTML +
+  //         "<h4> Something went wrong in .get</h4>";
+  //       console.log(err);
+  //     });
+  // });
+
+  // // update function showNewUserOnScreen(user) for Making the Registration Page Dynamic_Task 13 -> Deleting the Appointments
+  // // update function showNewUserOnScreen(user), edit button for Making the Registration Page Dynamic_Task 14 -> Update the user Details
+  // function showNewUserOnScreen(user) {
+  //   const parentNode = document.getElementById("bookings");
+  //   const childHTML = `<li id=${user._id}> ${user.name} - ${user.email} - ${user.phone}
+  //                            <button onclick=deleteUser('${user._id}')> Delete User </button>
+  //                            <button onclick=editUserDetails('${user.name}','${user.email}','${user.phone}','${user._id}')> Edit </button>
+  //                       </li>`;
+
+  //   parentNode.innerHTML = parentNode.innerHTML + childHTML;
+  // }
+
+  // Delete/Edit data from Local Storage
+  // deleteUse
+
+  // // update function showNewUserOnScreen( ) for Making the Registration Page Dynamic_Task 13 -> Deleting the Appointments
+  // function deleteUser(userId) {
+  //   axios
+  //     .delete(
+  //       `https://crudcrud.com/api/51773efe47b5487cad283e5ab25fd736/taskData/${userId}`
+  //     )
+  //     .then((response) => {
+  //       console.log(response);
+  //       removeUserFromScreen(userId);
+  //     })
+  //     .catch((err) => {
+  //       document.body.innerHTML =
+  //         document.body.innerHTML +
+  //         "<h4> Something went wrong in .delete</h4>";
+  //       console.log(err);
+  //     });
+  // }
+
+  // // update function removeUserFromScreen( ) for Making the Registration Page Dynamic_Task 13 -> Deleting the Appointments
+  // function removeUserFromScreen(userId) {
+  //   const parentNode = document.getElementById("listOfUsers");
+  //   const childNodeToBeDeleted = document.getElementById(userId);
+
+  //   if (childNodeToBeDeleted) {
+  //     parentNode.removeChild(childNodeToBeDeleted);
+  //   }
+  // }
+
+  // // Edit User
+
+  // // update function editUserDetails( ) for Making the Registration Page Dynamic_Task 14 -> Update the user Details
+  // function editUserDetails(name, emailId, phone, userId) {
+  //   //document.getElementById('emailId').value =emailId;
+  //   document.getElementById("name").value = name;
+  //   document.getElementById("email").value = emailId;
+  //   document.getElementById("phone").value = phone;
+
+  //   deleteUser(userId);
+  // }
+</script>
