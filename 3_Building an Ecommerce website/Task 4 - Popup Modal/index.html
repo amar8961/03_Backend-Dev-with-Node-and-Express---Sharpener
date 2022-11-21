@@ -6,9 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task 4 -> Popup Modal</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
+    <!-- defer. This Boolean attribute is set to indicate to a browser that the script is meant to be executed after the document has been parsed, but before firing DOMContentLoaded . -->
 </head>
 <body>
-    <h1>Hello World</h1>  
+    <button id="open">Open</button>
+
+    <div class="popup-container" id="container">
+        <div class="popup">
+            <button id="close">X</button>
+            <h1>Sharpener</h1>
+            <p>This is Amar Kumar</p>
+        </div>
+    </div>
 </body>
 </html>
