@@ -89,6 +89,17 @@ function addItemToCart(title, price, imageSrc) {
     // The append() method appends an element to the end of the list.
     cartRow.getElementsByClassName('btn-remove')[0].addEventListener('click', removeCartItem)
     cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged)
+
+    const container = document.getElementById('notification-container');
+    const notification = document.createElement('div');
+    notification.classList.add('notification');
+    // The classList property returns the CSS classnames of an element.
+    notification.innerHTML = `<h4>Your Product : <span>${title}</span> is added to the cart<h4>`;
+    container.appendChild(notification);
+    // The appendChild() method of the node interface, is used to create a text node as the last child of the node. This method is also used to move an element from one element to another element.
+    setTimeout(()=>{
+        notification.remove();
+    },2500)
 }
 
 function updateCartTotal() {
