@@ -1,0 +1,326 @@
+@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/* body{
+    height:100vh;
+} */
+
+/* header section */
+header {
+    text-align: center;
+    margin:0;
+    padding:0px;
+    padding-bottom:30px;
+    background:#777;
+    color:white;
+}
+
+header h1{
+    padding: 0px;
+    font-size:100px;
+    margin-top: 40px;
+}
+header ul{
+    display:flex;
+    padding:10px;
+    font-size:18px;
+    font-weight:200;
+    justify-content: center;
+    list-style-type: none;
+    border-bottom:0.1rem solid white;
+    position: fixed;
+    top: 0%;
+    background: black;
+    width: 100%;
+    z-index: 1;
+}
+header li{
+    margin:0px 40px;
+}
+header li a{
+    text-decoration: none;
+    color:white;
+}
+
+section h2{
+    font-family:"Metal Mania";
+    text-align:center;
+    padding:20px;
+    font-size:30px;
+}
+
+/* container class */
+.container{
+    max-width:900px;
+    margin:0 auto;
+    padding:20px 30px;
+}
+
+/* mobile-content id */
+#mobile-content{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+}
+#mobile-content div{
+    margin:30px;
+}
+#mobile-content div h3{
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+}
+#mobile-content .prod-details{
+    display: flex;
+    margin: 8px;
+    align-items: center;
+    justify-content: space-between;
+}
+#mobile-content .shop-item-button{
+    cursor:pointer;
+    padding:8px;
+    color:white;
+    border:none;
+    font-size:15px;
+    font-weight: bold;
+    border-radius: 4%;
+    background: #56CCF2;
+}
+#mobile-content .shop-item-button:hover, #shirt-content .shop-item-button:hover{
+    background: #0eabdf;
+}
+
+/* shirt-content id */
+#shirt-content{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+}
+#shirt-content div{
+    margin:30px;
+}
+#shirt-content div h3{
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+}
+#shirt-content .prod-details{
+    display:flex;
+    margin:8px;
+    align-items:center;
+    justify-content: space-between;
+}
+#shirt-content .shop-item-button{
+    cursor:pointer;
+    padding:8px;
+    color:white;
+    border:none;
+    font-size:15px;
+    font-weight: bold;
+    border-radius: 4%;
+    background: #56CCF2;
+}
+
+/* cart section */
+
+.cart-header {
+    font-weight: bold;
+    font-size: 1.25em;
+    color: #333;
+}
+
+.cart-column {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid black;
+    margin-right: 1.5em;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+
+.cart-row {
+    display: flex;
+}
+
+.cart-item {
+    width: 45%;
+}
+
+.cart-price {
+    width: 20%;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.cart-quantity {
+    width: 35%;
+}
+
+.cart-item-title {
+    color: #333;
+    margin-left: .5em;
+    font-size: 1.2em;
+}
+
+.cart-item-image {
+    width: 75px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.btn-remove {
+    color: white;
+    background-color: #EB5757;
+    border: none;
+    border-radius: .3em;
+    font-weight: bold;
+    padding: 1rem;
+}
+
+.btn-remove:hover {
+    background-color: #CC4C4C;
+}
+
+.cart-quantity-input {
+    height: 34px;
+    width: 50px;
+    border-radius: 5px;
+    border: 1px solid #56CCF2;
+    background-color: #eee;
+    color: #333;
+    padding: 0;
+    text-align: center;
+    font-size: 1.2em;
+    margin-right: 25px;
+}
+
+.cart-row:last-child {
+    border-bottom: 1px solid black;
+}
+
+.cart-row:last-child .cart-column {
+    border: none;
+}
+
+.cart-total {
+    text-align: end;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.cart-total-title {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: black;
+    margin-right: 20px;
+}
+
+.cart-total-price {
+    color: #333;
+    font-size: 1.1em;
+}
+
+.btn-purchase {
+    text-align: center;
+    vertical-align: middle;
+    padding: .67em .67em;
+    cursor: pointer;
+    color: white;
+    background-color: #56CCF2;
+    border: none;
+    border-radius: .3em;
+    font-weight: bold;    
+}
+
+.btn-purchase {
+    display: block;
+    margin: 40px auto 80px auto;
+    font-size: 1.75em;
+}
+
+/* notification section */
+#notification-container{
+    position:fixed;
+    bottom:10px;
+    right:10px;
+}
+.notification {
+    background-color: #56CCF2;
+    border-radius: 5px;
+    color: black;
+    padding: 2rem;
+    margin: 1rem;
+}
+
+.notification h4 span{
+    color:rgb(235, 33, 33);
+}
+
+/* footer section */
+footer{
+    display:flex;
+    margin-top:40px;
+    padding:20px;
+    background: #56CCF2;
+}
+footer .footer-title{
+    text-align: center;
+    color:white;
+    width:50%;
+    font-size:50px;
+    font-weight:bold;
+    margin:0 auto;
+}
+footer .footer-icons{
+    width:50%;
+    display:flex;
+    align-items:center;
+    justify-content: space-around;
+}
+.footer-icons ul{
+    list-style-type: none;
+    display:flex;
+}
+.footer-icons li{
+    padding:10px;
+    margin:0px 20px;
+}
+.footer-icons li:hover{
+    background:rgb(17, 206, 206);
+}
+.footer-icons img{
+    width:30px;
+}
+
+/* image container size */
+.image-container{
+    height: 250px;
+    width: 250px;
+    overflow: hidden;
+}
+
+/* product image transition */
+.prod-images{
+    transform-origin: center center;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    padding:0px;
+    margin:0px;
+    transition: ease-in 0.5s;
+    filter: brightness(100%);
+}
+.prod-images:hover{
+    transform: scale(1.5);
+    filter: brightness(130%);
+}
