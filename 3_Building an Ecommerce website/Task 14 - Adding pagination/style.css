@@ -355,3 +355,39 @@ footer .footer-icons{
     transform: scale(1.5);
     filter: brightness(130%);
 }
+
+/* page button */
+#pages-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#pages-button button{
+    width: 3rem;
+    margin: 0 1rem;
+    background-color: #56CDF3;
+    border-color: white;
+    color: white;
+    font-size: 1rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    border: 2px solid #56CDF3;
+    cursor: pointer;
+    transition: width .2s ease-in-out;
+}
+
+#pages-button button:hover{
+    width: 3.5rem;
+}
+
+#pages-button .active{
+    background-color: #0d94af;
+    border-color: #0d94af;
+}
+
+.pages-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

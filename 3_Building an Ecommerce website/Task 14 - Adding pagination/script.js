@@ -1,6 +1,18 @@
+// Global Variables
 const cart_items = document.querySelector("#cart .cart-items");
-
 const parentContainer = document.getElementById("EcommerceContainer");
+const products=document.getElementById('Products')
+const qty=document.querySelector('.cart-number')
+const toast=document.getElementById('notification-container')
+const cart=document.getElementById('cart-holder')
+const seeCart=document.getElementById('open-cart')
+const closeCart=document.getElementById('cancel')
+const items=document.getElementById('cart-items')
+const pages=document.getElementById('pages-button')
+
+//Event Listeners
+pages.addEventListener('click', showProducts)
+products.addEventListener('click', addToCart)
 
 // from old .js
 parentContainer.addEventListener("click", (e) => {
@@ -79,30 +91,8 @@ if (e.target.innerText == "REMOVE") {
 
 window.addEventListener("DOMContentLoaded", () => {
   console.log("loaded");
-
-  axios.get("http://localhost:3000/products").then((data) => {
-    console.log(data);
-
-    if (data.request.status === 200) {
-      // The HTTP 200 OK success status response code.
-      // The HTTP 201 Created success status response code indicates that the request has succeeded and has led to the creation of a resource.
-      // The HTTP 500 Internal Server Error server error response code.
-      // The HTTP 400 Bad Request response status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.
-      const products = data.data.products;
-      const parentSection = document.getElementById("Products");
-      products.forEach(product => {
-        const productHtml = `
-        <div>
-            <h3>${product.title}</h3>
-            <div class="image-container">
-              <img class="prod-images" src=${product.imageUrl}></img>
-            </div>
-            <button onClick="addToCart(${product.id})"> Add To Cart </button>
-        </div>`;
-        parentSection.innerHTML = parentSection.innerHTML + productHtml;
-      });
-    }
-  });
+  loadCart()
+  showProducts()
 });
 
 function addToCart(productId) {
@@ -151,5 +141,219 @@ function getCartDetails(){
   .catch(error => {
     // console.log(error)
     nofityUsers(error);
+  })
+}
+
+// Show Products
+function showProducts(e){
+  let pageNo;
+  try {
+      pageNo=e.target.id
+  }
+  catch(err){
+      pageNo=1
+  }
+  axios({
+      method: 'get',
+      url: `http://localhost:3000/pagination/${pageNo}`
+  }).then(response=>{
+      products.innerHTML=""
+      pages.innerHTML=""
+      response.data.products.map(product=>{
+          let div=document.createElement('div')
+          div.classList.add('product')
+          let h3=document.createElement('h3')
+          h3.innerHTML=product.title
+          let img=document.createElement('img')
+          img.src=product.imageUrl
+          let subdiv=document.createElement('div')
+          subdiv.classList.add('product-details')
+          let p=document.createElement('p')
+          p.innerHTML=`₹ ${product.price}`
+          let button=document.createElement('button')
+          button.id=product.id
+          button.innerHTML="ADD TO CART"
+          subdiv.appendChild(p)
+          subdiv.appendChild(button)
+          div.appendChild(h3)
+          div.appendChild(img)
+          div.appendChild(subdiv)
+          products.appendChild(div)
+      })
+
+      if (response.data.lastPage>=2){
+          if(response.data.currentPage==response.data.lastPage){
+              let cur_btn=document.createElement('button')
+              cur_btn.innerHTML=1
+              cur_btn.id=1
+              pages.appendChild(cur_btn)
+          }
+  
+          if(response.data.hasPreviousPage){
+              let cur_btn=document.createElement('button')
+              cur_btn.innerHTML=response.data.previousPage
+              cur_btn.id=response.data.previousPage
+              pages.appendChild(cur_btn)
+          }
+          if(response.data.currentPage){
+              let cur_btn=document.createElement('button')
+              cur_btn.classList.add('active')
+              cur_btn.innerHTML=response.data.currentPage
+              cur_btn.id=response.data.currentPage
+              pages.appendChild(cur_btn)
+          }
+          if(response.data.hasNextPage){
+              let cur_btn=document.createElement('button')
+              cur_btn.innerHTML=response.data.nextPage
+              cur_btn.id=response.data.nextPage
+              pages.appendChild(cur_btn)
+          }
+          if(response.data.currentPage==1){
+              let cur_btn=document.createElement('button')
+              cur_btn.innerHTML=response.data.lastPage
+              cur_btn.id=response.data.lastPage
+              pages.appendChild(cur_btn)
+          }
+      }
+
+  }).catch(err=>console.log(err))
+}
+// Show Cart
+function loadCart(e){
+  let pageNo;
+  try {
+      pageNo=e.target.id
+  }
+  catch(err){
+      pageNo=1
+  }
+
+  axios({
+      method: 'get',
+      url: `http://localhost:3000/pagination/${pageNo}`
+  }).then(response => {
+      console.log(response)
+      qty.innerHTML=response.data.totalItems
+      pages.innerHTML=""
+      // response.data.cartItems.map(item=>{
+        response.forEach((item) => {
+          let li=document.createElement('li')
+          li.classList.add('item')
+          let img=document.createElement('img')
+          img.src=item.imageUrl
+          let p1=document.createElement('p')
+          p1.innerHTML=item.title
+          let p2=document.createElement('p')
+          p2.innerHTML=item.price
+          let qty=document.createElement('input')
+          qty.classList.add('qty')
+          qty.type="number"
+          qty.value="1"
+          let button=document.createElement('button')
+          button.id=item.id
+          button.innerHTML="REMOVE"
+          li.appendChild(img)
+          li.appendChild(p1)
+          li.appendChild(p2)
+          li.appendChild(qty)
+          li.appendChild(button)
+          items.appendChild(li)
+      })
+
+      // Pagination Buttons for Cart
+      let div=document.createElement('div')
+      div.innerHTML=""
+      div.classList.add('pages-container')
+      if(response.data.lastPage==2){
+          if(response.data.hasPreviousPage){
+              let cur_btn=document.createElement('button')
+              cur_btn.innerHTML=response.data.previousPage
+              cur_btn.id=response.data.previousPage
+              cur_btn.classList.add('cart-pages')
+              div.appendChild(cur_btn)
+          }
+          if(response.data.currentPage){
+              let cur_btn2=document.createElement('button')
+              cur_btn2.innerHTML=response.data.currentPage
+              cur_btn2.id=response.data.currentPage
+              cur_btn2.classList.add('cart-pages-active')
+              div.appendChild(cur_btn2)
+          }
+          if(response.data.hasNextPage){
+              let cur_btn2=document.createElement('button')
+              cur_btn2.innerHTML=response.data.nextPage
+              cur_btn2.id=response.data.nextPage
+              cur_btn2.classList.add('cart-pages')
+              div.appendChild(cur_btn2)
+          }
+  
+          items.appendChild(div)
+      }
+      else if(response.data.lastPage>2){
+          if(response.data.currentPage==response.data.lastPage){
+              let cur_btn=document.createElement('button')
+              cur_btn.innerHTML=1
+              cur_btn.id=1
+              cur_btn.classList.add('cart-pages')
+              div.appendChild(cur_btn)
+          }
+          if(response.data.hasPreviousPage){
+              let cur_btn=document.createElement('button')
+              cur_btn.innerHTML=response.data.previousPage
+              cur_btn.id=response.data.previousPage
+              cur_btn.classList.add('cart-pages')
+              div.appendChild(cur_btn)
+          }
+          if(response.data.currentPage){
+              let cur_btn2=document.createElement('button')
+              cur_btn2.innerHTML=response.data.currentPage
+              cur_btn2.id=response.data.currentPage
+              cur_btn2.classList.add('cart-pages-active')
+              div.appendChild(cur_btn2)
+          }
+          if(response.data.hasNextPage){
+              let cur_btn2=document.createElement('button')
+              cur_btn2.innerHTML=response.data.nextPage
+              cur_btn2.id=response.data.nextPage
+              cur_btn2.classList.add('cart-pages')
+              div.appendChild(cur_btn2)
+          }
+          if(response.data.lastPage!==response.data.currentPage && !response.data.hasNextPage){
+              let cur_btn2=document.createElement('button')
+              cur_btn2.innerHTML=response.data.lastPage
+              cur_btn2.id=response.data.lastPage
+              cur_btn2.classList.add('cart-pages')
+              div.appendChild(cur_btn2)
+          }
+          if(response.data.currentPage==1){
+              let cur_btn2=document.createElement('button')
+              cur_btn2.innerHTML=response.data.lastPage
+              cur_btn2.id=response.data.lastPage
+              cur_btn2.classList.add('cart-pages')
+              div.appendChild(cur_btn2)
+          }
+          items.appendChild(div)
+      }
+
+      let p=document.createElement('p')
+      p.classList.add('total')
+      p.innerHTML="Total "
+      let total=document.createElement('span')
+      total.id="total"
+      totalPrice=response.data.totalPrice
+      total.innerHTML=`₹ ${parseFloat(response.data.totalPrice).toFixed(2)}`
+      p.appendChild(total)
+      items.appendChild(p)
+      let button=document.createElement('button')
+      button.classList.add('purchase')
+      button.innerHTML="ORDER NOW"
+      items.appendChild(button)
+
+      const order=document.querySelector('.purchase')
+      order.addEventListener('click', createOrder)
+  })
+  .catch(err=>console.log(err)).then(()=>{
+      const cart_pages=document.querySelector('.pages-container')
+      cart_pages.addEventListener('click', loadCart)
   })
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 13 -> Show the Cart</title>
+    <title>Task 14 -> Adding pagination</title>
     <link rel="stylesheet" href="./style.css">
     <script src="./script.js" async></script>
     <!-- Async - means execute code when it is downloaded and do not block DOM construction during downloading process. -->
@@ -46,7 +46,12 @@
             <button class='purchase-btn' type='button'>PURCHASE</button>
         </section>
 
-        <button class="cart-btn-bottom"> <a href="#cart" class="cart-bottom">See the cart</a></button>
+        <!-- pagination -->
+        <div id="pages-button"></div>
+
+        <!-- <button class="cart-btn-bottom"> <a href="#cart" class="cart-bottom">See the cart</a></button> -->
+        <div class="bottom-button"><button id="open-cart">Go to Cart</button></div>
+
 
     </div>
     <!-- Toggle notification -->
