@@ -22,6 +22,7 @@ products.addEventListener('click', addToCart)
 closeCart.addEventListener('click', hideCart)
 items.addEventListener('click', removeItem)
 
+
 // Show Products
 async function showProducts(e){
     let pageNo;
@@ -93,6 +94,7 @@ async function showProducts(e){
                 pages.appendChild(cur_btn)
             }
         }
+
 
     }).catch(err=>console.log(err))
 }
@@ -228,18 +230,20 @@ async function loadCart(e){
 
         const order=document.querySelector('.purchase')
         order.addEventListener('click', createOrder)
-    }).catch(err=>console.log(err))
-    // .then(()=>{
-    //     const cart_pages=document.querySelector('.pages-container')
-    //     cart_pages.addEventListener('click', loadCart)
-    // })
+    }).catch(err=>console.log(err)).then(()=>{
+        const cart_pages=document.querySelector('.pages-container')
+        cart_pages.addEventListener('click', loadCart)
+    })
 }
 
 //On DOM Content Loaded
 window.addEventListener('DOMContentLoaded', ()=>{
-    showProducts()
     loadCart()
+    showProducts()
 })
+
+
+
 
 // Place Order
 function createOrder(){
@@ -265,6 +269,7 @@ function showCart(){
 function hideCart(){
     document.getElementById('popup-container').style.display="none"
 }
+
 
 async function addToCart(e){
     await axios({
@@ -310,6 +315,7 @@ async function createNotification(prodId){
         setTimeout(()=>notif.remove(), 5000)
     }).catch(err=>console.log(err))
 }
+
 
 let index=0
 //Function to auto write header AK Star
