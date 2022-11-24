@@ -6,23 +6,23 @@ const shopController = require('../controllers/shop');
 
 const router = express.Router();
 
-// router.get('/', shopController.getIndex);
-
 router.get('/pagination/:pageNo', shopController.getIndex);
 
 router.get('/products', shopController.getProducts);
 
 router.get('/products/:productId', shopController.getProduct);
 
-router.get('/cart', shopController.getCart);
+router.get('/cart/:pageNo', shopController.getCart);
+
+router.get('/products/cart', shopController.getCart)
 
 router.post('/cart', shopController.postCart);
 
-router.post('/cart-delete-item', shopController.postCartDeleteProduct);
+router.post('/products/cart/:productId', shopController.addToCart);
 
-// router.get('/orders', shopController.getOrders);
+router.post('/cart-delete-item/:productId', shopController.postCartDeleteProduct);
 
-// router.get('/checkout', shopController.getCheckout);
+router.get('/orders', shopController.getOrders);
 
 router.post('/orders/:totalPrice', shopController.createOrder);
 
