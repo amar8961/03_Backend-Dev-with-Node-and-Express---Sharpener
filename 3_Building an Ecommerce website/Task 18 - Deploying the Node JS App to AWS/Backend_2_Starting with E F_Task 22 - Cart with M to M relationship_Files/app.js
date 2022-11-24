@@ -37,6 +37,10 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, `public/${req.url}`));
+})
+
 Orders.belongsTo(User, {constraints: true, onDelete: 'CASCADE'});
 Product.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
 User.hasMany(Orders)
