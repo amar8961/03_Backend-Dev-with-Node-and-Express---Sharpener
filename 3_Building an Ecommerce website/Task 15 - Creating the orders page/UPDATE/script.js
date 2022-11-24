@@ -312,7 +312,7 @@ async function createNotification(prodId){
 }
 
 let index=0
-//Function to auto write header The Generics
+//Function to auto write header AK Star
 function writeText(){
     document.querySelector('#header h1').innerText=text.slice(0,index)
     index++
