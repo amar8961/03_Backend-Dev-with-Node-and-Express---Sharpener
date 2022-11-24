@@ -9,6 +9,8 @@ const seeCart=document.getElementById('open-cart')
 const closeCart=document.getElementById('cancel')
 const items=document.getElementById('cart-items')
 const pages=document.getElementById('pages-button')
+const orderUrl=`http://localhost:3000/orders`
+var totalPrice=0.00;
 
 //Event Listeners
 pages.addEventListener('click', showProducts)
@@ -60,8 +62,8 @@ if (e.target.className == "shop-item-button") {
 }
 if (e.target.className == "cart-btn-bottom" || e.target.className == "cart-bottom" || e.target.className == "cart-holder") {
   // update here for Task - 13 -> Show the Cart
-  const cartContainer = document.getElementById('cart');
-  cartContainer.innerHTML = ''
+  // const cartContainer = document.getElementById('cart');
+  // cartContainer.innerHTML = ''
   getCartDetails()
   // document.querySelector("#cart").style = "display:block;";
 }

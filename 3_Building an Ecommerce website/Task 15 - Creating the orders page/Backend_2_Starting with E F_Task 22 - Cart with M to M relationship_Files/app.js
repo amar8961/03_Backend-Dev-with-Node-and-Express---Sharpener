@@ -9,6 +9,7 @@ const Product = require('./models/product');
 const User = require('./models/user');
 const Cart = require('./models/cart');
 const CartItem = require('./models/cart-item');
+const Orders=require('./models/orders')
 
 const app = express();
 
@@ -36,7 +37,9 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
+Orders.belongsTo(User, {constraints: true, onDelete: 'CASCADE'});
 Product.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
+User.hasMany(Orders)
 User.hasMany(Product);
 User.hasOne(Cart);
 Cart.belongsTo(User);
@@ -52,7 +55,7 @@ sequelize
   })
   .then(user => {
     if (!user) {
-      return User.create({ name: 'Max', email: 'test@test.com' });
+      return User.create({ name: 'Amar', email: 'am_kr@rocketmail.com' });
     }
     return user;
   })

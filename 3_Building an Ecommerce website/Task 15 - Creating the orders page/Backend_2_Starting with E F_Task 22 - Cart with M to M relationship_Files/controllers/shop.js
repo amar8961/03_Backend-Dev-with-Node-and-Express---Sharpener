@@ -1,5 +1,7 @@
 const Product = require('../models/product');
-const Cart = require('../models/cart');
+// const Cart = require('../models/cart');
+const Orders = require('../models/orders');
+const CartItem = require('../models/cart-item');
 
 const ITEMS_PER_PAGE = 1;
 
@@ -166,16 +168,44 @@ exports.postCartDeleteProduct = (req, res, next) => {
   .catch(err => console.log(err))
 };
 
-exports.getOrders = (req, res, next) => {
-  res.render('shop/orders', {
-    path: '/orders',
-    pageTitle: 'Your Orders'
-  });
-};
+// exports.getOrders = (req, res, next) => {
+//   res.render('shop/orders', {
+//     path: '/orders',
+//     pageTitle: 'Your Orders'
+//   });
+// };
 
-exports.getCheckout = (req, res, next) => {
-  res.render('shop/checkout', {
-    path: '/checkout',
-    pageTitle: 'Checkout'
-  });
+// exports.getCheckout = (req, res, next) => {
+//   res.render('shop/checkout', {
+//     path: '/checkout',
+//     pageTitle: 'Checkout'
+//   });
+// };
+
+exports.createOrder = (req, res, next) => {
+  console.log(req.params)
+  const items=[];
+  const totalPrice=req.params.totalPrice
+  req.user
+    .getCart()
+    .then(cart => {
+      return cart.getProducts()})
+      .then(cartItems => {
+          cartItems.map(i=>items.push(i.id))
+          CartItem.destroy({
+            where: {},
+            truncate: true
+          })
+        }).catch(err => console.log(err))
+        .then(()=>{
+          Orders.create({
+            userId: 1,
+            items: JSON.stringify(items),
+            totalPrice: totalPrice,
+          }).then(result => {
+            console.log(result)
+            res.status(201).send(result)
+          }).catch(err=>console.log(err))
+    })
+    .catch(err => console.log(err));
 };
