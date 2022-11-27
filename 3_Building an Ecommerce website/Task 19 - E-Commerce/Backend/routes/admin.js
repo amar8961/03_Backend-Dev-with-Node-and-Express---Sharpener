@@ -1,10 +1,10 @@
-const path = require('path');
-
+//Import Express
 const express = require('express');
 
-const adminController = require('../controllers/admin');
-
 const router = express.Router();
+
+// Import admin controller
+const adminController = require('../controllers/admin');
 
 // /admin/add-product => GET
 router.get('/add-product', adminController.getAddProduct);

@@ -1,5 +1,21 @@
+// Import product model
 const Product = require('../models/product');
 
+// Admin Products
+exports.getProducts = (req, res, next) => {
+  req.user
+    .getProducts()
+    .then(products => {
+      res.render('admin/products', {
+        prods: products,
+        pageTitle: 'Admin Products',
+        path: '/admin/products'
+      });
+    })
+    .catch(err => console.log(err));
+};
+
+// Add Product
 exports.getAddProduct = (req, res, next) => {
   res.render('admin/edit-product', {
     pageTitle: 'Add Product',
@@ -8,6 +24,7 @@ exports.getAddProduct = (req, res, next) => {
   });
 };
 
+// Post Add Product
 exports.postAddProduct = (req, res, next) => {
   const title = req.body.title;
   const imageUrl = req.body.imageUrl;
@@ -30,6 +47,7 @@ exports.postAddProduct = (req, res, next) => {
     });
 };
 
+// Edit Product
 exports.getEditProduct = (req, res, next) => {
   const editMode = req.query.edit;
   if (!editMode) {
@@ -54,6 +72,7 @@ exports.getEditProduct = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
+// Post Edit Product
 exports.postEditProduct = (req, res, next) => {
   const prodId = req.body.productId;
   const updatedTitle = req.body.title;
@@ -75,19 +94,7 @@ exports.postEditProduct = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
-exports.getProducts = (req, res, next) => {
-  req.user
-    .getProducts()
-    .then(products => {
-      res.render('admin/products', {
-        prods: products,
-        pageTitle: 'Admin Products',
-        path: '/admin/products'
-      });
-    })
-    .catch(err => console.log(err));
-};
-
+// Delete Product
 exports.postDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
   Product.findByPk(prodId)

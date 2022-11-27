@@ -1,10 +1,10 @@
-const path = require('path');
-
+//Import Express
 const express = require('express');
 
-const shopController = require('../controllers/shop');
-
 const router = express.Router();
+
+// Import shop controller
+const shopController = require('../controllers/shop');
 
 router.get('/', shopController.getIndex);
 
