@@ -1,7 +1,5 @@
-// Import models
 const Product = require('../models/product');
 
-// Add Product
 exports.getAddProduct = (req, res, next) => {
   res.render('admin/add-product', {
     pageTitle: 'Add Product',
@@ -12,7 +10,6 @@ exports.getAddProduct = (req, res, next) => {
   });
 };
 
-// Post Add Product
 exports.postAddProduct = (req, res, next) => {
   const title = req.body.title;
   const imageUrl = req.body.imageUrl;
@@ -23,7 +20,6 @@ exports.postAddProduct = (req, res, next) => {
   res.redirect('/');
 };
 
-// Admin Products
 exports.getProducts = (req, res, next) => {
   Product.fetchAll(products => {
     res.render('admin/products', {
