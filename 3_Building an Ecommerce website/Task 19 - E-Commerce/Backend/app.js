@@ -7,11 +7,28 @@ const app = express();
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const homeRoutes = require("./routes/homeroutes");
-app.use(homeRoutes);
+// User able to access 'public' folder
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
+
+// ejs view engine
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
+// Import admin route
+const adminRoutes = require('./routes/admin');
+app.use('/admin', adminRoutes);
+
+// Import shop route
+const shopRoutes = require('./routes/shop');
+app.use(shopRoutes);
+
+// Error Page
+const errorController = require('./controllers/error');
+app.use(errorController.get404);
 
 // with this users should be able to access 'public' path // it will take any request that tries to find some file.
-const path = require("path");
 app.use(express.static(path.join(__dirname, "public")));
 
+// Server
 app.listen(4000);
