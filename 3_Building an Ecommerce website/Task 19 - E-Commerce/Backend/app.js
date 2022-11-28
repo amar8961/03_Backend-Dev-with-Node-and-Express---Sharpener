@@ -15,6 +15,7 @@ const Cart = require('./models/cart');
 const CartItem = require('./models/cart-item');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+const Orders=require('./models/orders');
 
 // use ejs view engine
 app.set('view engine', 'ejs');
@@ -44,7 +45,9 @@ app.use(errorController.get404);
 // Relation
 // ON DELETE CASCADE constraint is used in MySQL to delete the rows from the child table automatically, when the rows from the parent table are deleted.
 // Using constraints prevents the storage of invalid data in a table. Constraints are Boolean expressions that return TRUE or FALSE.
+Orders.belongsTo(User, {constraints: true, onDelete: 'CASCADE'});
 Product.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
+User.hasMany(Orders)
 User.hasMany(Product);
 User.hasOne(Cart);
 Cart.belongsTo(User);

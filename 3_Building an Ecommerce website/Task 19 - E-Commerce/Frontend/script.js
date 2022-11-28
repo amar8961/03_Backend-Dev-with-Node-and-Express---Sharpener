@@ -2,6 +2,7 @@
 const productsUrl=`http://localhost:3000/products`
 const cartUrl=`http://localhost:3000/cart`
 const shopUrl=`http://localhost:3000/pagination/`
+const orderUrl=`http://localhost:3000/orders`
 const text=" AK Star "
 const products=document.getElementById('products')
 const qty=document.querySelector('.cart-number')
@@ -12,6 +13,7 @@ const closeCart=document.getElementById('close')
 const items=document.getElementById('items')
 const total=document.getElementById('total')
 const pages=document.getElementById('pages-button')
+var totalPrice=0.00;
 
 //Event Listeners
 seeCart.addEventListener('click', showCart)
@@ -98,6 +100,7 @@ async function showProducts(e){
     }).catch(err=>console.log(err))
 }
 
+// Show Cart
 async function loadCart(e){
     let pageNo;
     try {
@@ -226,6 +229,9 @@ async function loadCart(e){
         button.classList.add('purchase')
         button.innerHTML="ORDER NOW"
         items.appendChild(button)
+
+        const order=document.querySelector('.purchase')
+        order.addEventListener('click', createOrder)
     }).catch(err=>console.log(err)).then(()=>{
         const cart_pages=document.querySelector('.pages-container')
         cart_pages.addEventListener('click', loadCart)
@@ -237,6 +243,21 @@ window.addEventListener('DOMContentLoaded', ()=>{
     showProducts()
     loadCart()
 })
+
+// Place Order
+function createOrder(){
+    if(totalPrice==0.00|| totalPrice<1){
+        alert('Cart is Empty!')
+        return
+    }
+    axios({
+        method: 'post',
+        url: `${orderUrl}/${totalPrice}`
+    }).then(response=>{
+        alert(`Order Successfully Placed With Order ID: ${response.data.orderId}`)
+        location.reload()
+    }).catch(err=>console.log(err))
+}
 
 //Show Cart Popup Modal
 function showCart(){
