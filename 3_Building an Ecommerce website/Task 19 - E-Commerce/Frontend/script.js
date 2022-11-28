@@ -232,10 +232,11 @@ async function loadCart(e){
 
         const order=document.querySelector('.purchase')
         order.addEventListener('click', createOrder)
-    }).catch(err=>console.log(err)).then(()=>{
-        const cart_pages=document.querySelector('.pages-container')
-        cart_pages.addEventListener('click', loadCart)
-    })
+    }).catch(err=>console.log(err))
+    // .then(()=>{
+    //     const cart_pages=document.querySelector('.pages-container')
+    //     cart_pages.addEventListener('click', loadCart)
+    // })
 }
 
 //On DOM Content Loaded

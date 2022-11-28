@@ -227,10 +227,13 @@ exports.postCartDeleteProduct = (req, res, next) => {
 
 // Order
 exports.getOrders = (req, res, next) => {
-  res.render('shop/orders', {
-    path: '/orders',
-    pageTitle: 'Your Orders'
-  });
+  // res.render('shop/orders', {
+  //   path: '/orders',
+  //   pageTitle: 'Your Orders'
+  // });
+  Orders.findAll().then(response=>{
+    res.status(200).send(response)
+  }).catch(err=>console.log(err)) 
 };
 
 // Checkout
@@ -249,7 +252,10 @@ exports.createOrder = (req, res, next) => {
     .then(cart => {
       return cart.getProducts()})
       .then(cartItems => {
-          cartItems.map(i=>items.push(i.id))
+          // cartItems.map(i=>items.push(i.id))
+          cartItems.map(i=>{
+            items.push(i)
+          })
           CartItem.destroy({
             where: {},
             truncate: true
