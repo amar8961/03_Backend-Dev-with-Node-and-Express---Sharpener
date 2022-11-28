@@ -6,13 +6,15 @@ const router = express.Router();
 // Import shop controller
 const shopController = require('../controllers/shop');
 
-router.get('/', shopController.getIndex);
+// router.get('/', shopController.getIndex);
+router.get('/pagination/:pageNo', shopController.getIndex);
 
 router.get('/products', shopController.getProducts);
 
 router.get('/products/:productId', shopController.getProduct);
 
-router.get('/cart', shopController.getCart);
+// router.get('/cart', shopController.getCart);
+router.get('/cart/:pageNo', shopController.getCart);
 
 router.get('/products/cart', shopController.getCart)
 
