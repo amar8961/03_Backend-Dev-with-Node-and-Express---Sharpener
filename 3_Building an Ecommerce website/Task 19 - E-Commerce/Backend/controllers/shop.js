@@ -39,11 +39,11 @@ exports.getProduct = (req, res, next) => {
   console.log(req.params)
   Product.findByPk(prodId)
     .then(product => {
-      res.render('shop/product-detail', {
-        product: product,
-        pageTitle: product.title,
-        path: '/products'
-      });
+      // res.render('shop/product-detail', {
+      //   product: product,
+      //   pageTitle: product.title,
+      //   path: '/products'
+      // });
       res.status(200).send(product)
     })
     .catch(err => console.log(err));

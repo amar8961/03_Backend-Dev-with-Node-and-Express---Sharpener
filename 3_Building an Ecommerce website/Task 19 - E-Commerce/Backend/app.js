@@ -21,7 +21,8 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 // The "extended" syntax allows for rich objects and arrays to be encoded into the URL-encoded format, allowing for a JSON-like experience with URL-encoded.
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 // with this users should be able to access 'public' path // it will take any request that tries to find some file.
 app.use(express.static(path.join(__dirname, 'public')));
 
