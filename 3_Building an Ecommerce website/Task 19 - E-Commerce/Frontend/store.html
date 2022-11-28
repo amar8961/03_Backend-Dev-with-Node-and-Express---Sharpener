@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Building Blocks of Ecommerce</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="./index.js" defer></script>
+    <script src="./script.js" defer></script>
 </head>
 <body>
     <!-- nav -->
@@ -17,77 +17,12 @@
         <h1>AK Star</h1>
     </nav>
     <!-- mobile -->
-    <section id="mobile" class="container">
-        <h2>MOBILE</h2>
-        <div id ="mobile-content">
-            <div id='album1'>
-                <h3>Samsung Mobile</h3>
-                <div class="image-container">
-                    <img class="prod-images" src="https://images.samsung.com/is/image/samsung/p6pim/in/sm-m135fdbqins/gallery/in-galaxy-m13-sm-m135-sm-m135fdbqins-thumb-533230683?$320_320_PNG$" alt="">
-                </div>
-                                <div class="prod-details">
-                    <span>₹<span>10,999</span></span>
-                    <button class="shop-item-button" type='button'>ADD TO CART</button>
-                </div>
-            </div>
-            <div id='album2'>
-                <h3>Oppo Mobile</h3>
-                <div class="image-container">
-                    <img class="prod-images" src="https://image.oppo.com/content/dam/oppo/in/mkt/phonelist/products/reno3-pro-blue.png" alt="">
-                </div>
-                                <div class="prod-details">
-                    <span>₹<span>15,999</span></span>
-                    <button class="shop-item-button" type='button'>ADD TO CART</button>
-                </div>
-            </div>
-            <div id='album3'>
-                <h3>Apple</h3>
-                <div class="image-container">
-                    <img class="prod-images" src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-card-40-iphone14pro-202209_FMT_WHH?wid=508&hei=472&fmt=p-jpg&qlt=95&.v=1663611329204" alt="">
-                </div>
-                                <div class="prod-details">
-                    <span>₹<span>49,999</span></span>
-                    <button class="shop-item-button" type='button'>ADD TO CART</button>
-                </div>
-            </div>
-            <div id='album4'>
-                <h3>Redmi</h3>
-                <div class="image-container">
-                    <img class="prod-images" src="https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1662438501/Croma%20Assets/Communication/Mobiles/Images/252193_mz18gh.png/mxw_640,f_auto" alt="">
-                </div>
-                                <div class="prod-details">
-                    <span>₹<span>20,999</span></span>
-                    <button class="shop-item-button" type='button'>ADD TO CART</button>
-                </div>
-            </div>
-        </div>
+    <section id="Products" class="container">
+        <h2>Products</h2>
+        
     </section>
-    <!-- shirt -->
-    <section id="shirt" class="container">
-        <h2>T-Shirt</h2>
-        <div id="shirt-content">
-            <div id="t-shirt">
-                <h3>Red T-Shirt</h3>
-                <div class="image-container">
-                    <img class="prod-images" src="https://cdn.pixabay.com/photo/2016/12/06/09/31/blank-1886008__340.png" alt="">
-                </div>
-                            <div class="prod-details">
-                    <span>₹<span>199</span></span>
-                    <button class="shop-item-button" type='button'>ADD TO CART</button>
-                </div>
-            </div>
-            <div id="coffee-cup">
-                <h3>Blue T-Shirt</h3>
-                <div class="image-container">
-                    <img class="prod-images" src="https://5.imimg.com/data5/XQ/IH/MY-29746767/t-shirt-500x500.jpg" alt="">
-                </div>
-                            <div class="prod-details">
-                    <span>₹<span>299</span></span>
-                    <button class="shop-item-button" type='button'>ADD TO CART</button>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Toggle notification -->
+    <div id="notification-container"></div>
     <!-- footer -->
     <footer>
         <div class="footer-title">
@@ -107,5 +42,8 @@
             </ul>
         </div>
     </footer>
+    
+    <!-- add axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>
