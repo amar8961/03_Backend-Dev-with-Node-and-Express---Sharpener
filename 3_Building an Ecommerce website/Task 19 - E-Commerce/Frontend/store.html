@@ -2,48 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Building Blocks of Ecommerce</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="./script.js" defer></script>
+    <title>E-Commerce Store</title>
 </head>
 <body>
-    <!-- nav -->
-    <nav>
-        <ul class='header'>
-            <li><a href="#">STORE</a></li>
-            <a href="#cart" class="cart-holder">cart<span class='cart-number'>0</span></a>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <ul class="navbar-container">
+            <li class="active"><a href="./store.html">STORE</a></li>
+            <li id='cart' class="cart"><a href="#">CART<span class="cart-number">0</span></a></li>
         </ul>
-        <h1>AK Star</h1>
     </nav>
-    <!-- mobile -->
-    <section id="Products" class="container">
-        <h2>Products</h2>
-        
-    </section>
-    <!-- Toggle notification -->
-    <div id="notification-container"></div>
-    <!-- footer -->
-    <footer>
-        <div class="footer-title">
-            AK Star
+
+    <!-- Cart Section -->
+    <div id="popup-container" class="popup-container">
+        <button id="close" class="close-popup">x</button>
+        <h1>CART</h1>
+        <div class="cart-header"><p>ITEM</p><span>PRICE</span><p>QUANTITY</p></div>
+        <ul class="items" id="items"></ul>
+    </div>
+
+    <!-- Store Header -->
+    <div id="header" class="header-container">
+        <h1>AK Star</h1>
+    </div>
+
+    <!-- Products -->
+    <div id="products" class="container"></div>
+
+    <div class="bottom-button">
+        <button id="open-cart">See the Cart</button>
+    </div>
+
+    <div id="toast"></div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <h2>AK Star</h2>
+        <div class="footer-links">
+            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"></a>
+            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" alt="Spotify"></a>
+            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt=""></a>
         </div>
-        <div class="footer-icons">
-            <ul>
-                <li><a href="https://www.youtube.com">
-                    <img src="https://cdn.icon-icons.com/icons2/2592/PNG/512/youtube_logo_icon_154503.png" alt="">
-                </a></li>
-                <li><a href="https://spotify.com">
-                    <img src="https://static.vecteezy.com/system/resources/previews/006/057/992/original/spotify-logo-on-transparent-background-free-vector.jpg" alt="">
-                </a></li>
-                <li><a href="https://facebook.com">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Facebook_icon.svg/2048px-Facebook_icon.svg.png" alt="">
-                </a></li>
-            </ul>
-        </div>
-    </footer>
-    
-    <!-- add axios -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </div> 
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>

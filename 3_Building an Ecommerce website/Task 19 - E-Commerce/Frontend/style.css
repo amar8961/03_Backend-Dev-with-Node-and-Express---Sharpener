@@ -1,205 +1,433 @@
-/* Import font */
-@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap');
-
-* {
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Quicksand&display=swap');
+*{
     margin: 0;
     padding: 0;
 }
-/* nav */
-nav {
-    text-align: center;
-    margin:0;
-    padding:0px;
-    padding-bottom:30px;
-    background:#777;
-    color:white;
+
+#toast{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
 }
 
-#cart{
-    position: fixed;
-    height: 95%;
+.toast{
+    padding: 2rem;
+    background-color: #0d94af;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    color: white;
+    border-radius: 5px;
+    margin: 1rem;
 }
-.cart-holder{
-    border:2px solid #56CCF2;
-    border-radius: 7px;;
-    padding:2px 10px;
-    position: absolute;
-    right: 2%;
-}
+
 .cart-number{
-    position:absolute;
-    color:#56CCF2;
-    font-size: 20px;
-    top:-10px;
-    right:-15px;
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    color: #56CDF3;
 }
-nav h1{
-    padding: 0px;
-    font-size:100px;
-    margin-top: 40px;
-}
-nav ul{
-    display:flex;
-    padding:10px;
-    font-size:18px;
-    font-weight:200;
-    justify-content: center;
-    list-style-type: none;
-    border-bottom:0.1rem solid white;
+
+.popup-container{
+    border: 1px solid black;
     position: fixed;
-    top: 0%;
-    background: black;
-    width: 100%;
-    z-index: 1;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    width: 35rem;
+    top: 4rem;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
 }
-nav ul a{
-    color:white;
-    text-decoration:none;
+
+.cart-header{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    justify-content: start;
+    top: 7.8rem;
+}
+
+.cart-header p{
+    font-size: 1.5rem;
+    margin: 0 2.8rem;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.cart-header span{
+    text-decoration: underline;
+    font-size: 1.5rem;
+    margin: 0 1rem 0 5rem;
+    font-weight: 700;
+}
+
+.items{
+    top: 10rem;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.total{
+    margin-top: 1rem;
+    margin-left: 20rem;
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+#total{
+    font-weight: 400;
+}
+
+.item{
+    height: 6rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin: .5rem 0;
+    /* display: none; */
+}
+
+.item p{
+    margin: 2rem 1rem;
+    font-size: 1rem;
+}
+
+.item button{
+    margin: 1rem 0;
+    width: 6rem;
+    height: 3rem;
+    padding: .2rem 1rem;
+    background-color: #E64D4C;
+    color: white;
+    border: #E64D4C;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: .5rem;
+}
+
+.item button:hover{
+    background-color: #cf2020;
+}
+
+.item input{
+    margin: 1rem 1rem;
+    padding: .2rem 0.5rem;
+    border: 2px solid #56CDF3;
+    border-radius: .5rem;
+    text-align: center;
+    width: 2rem;
+    height: 2.4rem;
+}
+
+
+.item img{
+    height: 6rem;
+    width: 6rem;
+    border-radius: 1rem;
+    margin: 0 1rem;
+}
+
+.popup-container h1{
+    position: absolute;
+    top: 3rem;
+    font-size: 2.5rem;
+    font-family: 'Metal Mania', cursive;
+}
+
+.close-popup{
+    background-color: white;
+    color: black;
+    font-size: 1.5rem;
+    border-radius: .5rem;
+    padding: .5rem;
+    position: absolute;
+    top: 10px;
+    right: 15px;
     cursor: pointer;
 }
-nav li{
-    margin:0px 40px;
-}
-nav li a{
-    text-decoration: none;
-    color:white;
-}
-/* Mobile */
-/* container class */
-.container{
-    max-width:900px;
-    margin:0 auto;
-    padding:20px 30px;
-}
-section h2{
-    font-family:"Metal Mania";
-    text-align:center;
-    padding:20px;
-    font-size:30px;
-}
-/* mobile-content id */
-#mobile-content{
-    display:flex;
-    flex-wrap: wrap;
-    justify-content:space-around;
-}
-#mobile-content div{
-    margin:30px;
-}
-#mobile-content div h3{
-    display: block;
-    width: 100%;
-    text-align: center;
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 15px;
-}
-#mobile-content .prod-details{
-    display: flex;
-    margin: 8px;
-    align-items: center;
-    justify-content: space-between;
-}
-#mobile-content .shop-item-button{
-    cursor:pointer;
-    padding:8px;
-    color:white;
-    border:none;
-    font-size:15px;
-    font-weight: bold;
-    border-radius: 4%;
-    background: #56CCF2;
-}
-#mobile-content .shop-item-button:hover, #shirt-content .shop-item-button:hover{
-    background: #0eabdf;
-}
-/* shirt */
-#shirt-content{
-    display:flex;
-    flex-wrap: wrap;
-    justify-content:space-around;
-}
-#shirt-content div{
-    margin:30px;
-}
-#shirt-content div h3{
-    display: block;
-    width: 100%;
-    text-align: center;
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 15px;
-}
-#shirt-content .prod-details{
-    display:flex;
-    margin:8px;
-    align-items:center;
-    justify-content: space-between;
-}
-#shirt-content .shop-item-button{
-    cursor:pointer;
-    padding:8px;
-    color:white;
-    border:none;
-    font-size:15px;
-    font-weight: bold;
-    border-radius: 4%;
-    background: #56CCF2;
-}
-/* Mobile & Shirt */
-.image-container{
-    height: 250px;
-    width: 250px;
-    overflow: hidden;
-}
-.prod-images{
-    transform-origin: center center;
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-    padding:0px;
-    margin:0px;
-    transition: ease-in 0.5s;
-    filter: brightness(100%);
-}
-.prod-images:hover{
-    transform: scale(1.5);
-    filter: brightness(130%);
-}
-/* footer */
-footer{
-    display:flex;
-    margin-top:40px;
-    padding:20px;
-    background: #56CCF2;
-}
-footer .footer-title{
-    text-align: center;
-    color:white;
-    width:50%;
-    font-size:50px;
-    font-weight:bold;
-    margin:0 auto;
-}
-footer .footer-icons{
-    width:50%;
-    display:flex;
-    align-items:center;
-    justify-content: space-around;
-}
-.footer-icons ul{
-    list-style-type: none;
-    display:flex;
-}
-.footer-icons li{
-    padding:10px;
-    margin:0px 20px;
-}
-.footer-icons li:hover{
-    background:rgb(17, 206, 206);
-}
-.footer-icons img{
-    width:30px;
+
+.close-popup:hover{
+    color: white;
+    background-color: black;
+    border-color: #000;
+    border: 2px solid #000;
 }
 
+.purchase{
+    margin: 1rem 0;
+    position:relative;
+    background-color: #56CDF3;
+    padding: 0.5rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: .5rem;
+    width: 10rem;
+}
+
+.purchase:hover{
+    background-color: #0d94af;
+}
+
+
+.header-container-home h1{
+    color: white;
+    font-size: 6rem;
+    cursor: pointer;
+}
+
+.header-container-home h3{
+    margin-top: 10rem;
+    position: absolute;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.5rem;
+    border: 1px solid #56CDF3;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.header-container-home button{
+    margin-top: 16rem;
+    position: absolute;
+    font-size: 2rem;
+    background-color: gray;
+    color: #56CDF3;
+    border: 2px solid #56CDF3;
+    border-radius: 5rem;
+    padding: 1rem;
+}
+
+.tours-container{
+    margin: 3rem 6rem;
+    max-width: 90vw;
+    text-align: center;
+    align-content: center;
+}
+
+.tour{
+    margin: 1rem 6rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    border-bottom: 1px solid black;
+    padding: 0.5rem;
+}
+
+.tour button{
+    background-color: #56CDF3;
+    padding: .5rem 2rem;
+    font-weight: 700;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.about-container{
+    margin-top: 2.5rem;
+    text-align: center;
+}
+
+.about-section{
+    margin: 2rem 10rem;
+    padding: 2rem 5rem;
+    text-align: start;
+}
+
+.about-section img{
+    border-radius: 150px;
+    width: 13rem;
+    display: block;
+    float: left;
+    margin: 1rem 3rem;
+}
+
+.about-section p{
+    display: inline;
+    color: grey;
+}
+
+.navbar{
+    top: 0px;
+    background-color: #212020;
+    width: 100vw;
+    max-width: 100vw;
+    position: fixed;
+}
+
+.navbar-container{
+    justify-content: center;
+    padding: 0.3rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-container li{
+    margin: 1rem;
+    text-decoration: none;
+    color: #212020;   
+}
+
+a{
+    color: white;
+    text-decoration: none;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+}
+
+a:hover{
+    color: gainsboro;
+}
+
+.cart{
+    position: absolute;
+    right: 20px;
+    position: fixed;
+    border: 2px solid #56CDF3;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+.header-container{
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1.5rem;
+    min-height: 7rem;
+    text-align: center;
+    background-color: gray;
+}
+
+.header-container h1{
+    color: white;
+    font-size: 6rem;
+    cursor: pointer;
+}
+
+.container{
+    margin: 3rem 5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.container img{
+    width: 100vw;
+    margin: 2rem;
+    height:250px;
+    width: 250px;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.product-type{
+    font-family: "Metal Mania", cursive;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.product{
+    margin: 1.5rem 0;
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.product h3{
+    font-family:'Times New Roman', Times, serif;
+    font-size: 1.5rem;
+}
+
+.product-details{
+    display: flex;
+    flex-direction: row;
+}
+
+.product-details p{
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.product-details button{
+    background-color: #56CDF3;
+    padding: 0.5rem;
+    font-weight: 700;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: 5rem;
+}
+
+.product-details button:hover{
+    background-color: #0d94af;
+}
+
+.bottom-button{
+    align-content: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 3rem 0
+}
+
+.bottom-button button{
+    background-color: gray;
+    padding: 1rem;
+    font-weight: 900;
+    border: none;
+    color: #56CDF3;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.footer{
+    position:static;
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    max-width: 100vw;
+    min-height: 3rem;
+    background-color: #212020;
+    color: white;
+    bottom: 0px;
+}
+
+.footer-links{
+    padding: 1rem;
+    right: 4rem;
+    margin: 0 3rem;
+}
+
+.footer-links a{
+    margin: 0 0.5rem;
+}
+
+.footer h2{
+    padding: 0.5rem;
+    cursor: pointer;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    left: 4rem;
+}
+
+a img{
+    height: 30px;
+    width: 30px;
+}
