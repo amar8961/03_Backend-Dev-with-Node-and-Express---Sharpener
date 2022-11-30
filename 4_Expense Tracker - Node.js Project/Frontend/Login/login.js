@@ -5,12 +5,12 @@ async function login(e) {
 
     const loginDetails = {
         email: e.target.email.value,
-        password: e.terget.password.value
+        password: e.target.password.value
     }
     console.log(loginDetails)
 
     await axios.post('http://localhost:3000/user/login', loginDetails).then(response => {
-        aleart(response.data.message)
+        alert(response.data.message)
     })
     } catch (err) {
         console.log(JSON.stringify(err))
