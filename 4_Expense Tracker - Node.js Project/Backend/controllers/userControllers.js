@@ -1,4 +1,6 @@
+// Import
 const User = require('../models/users')
+const bcrypt = require('bcrypt')
 
 // for string validation
 function isstringinvalid(string) {
@@ -20,9 +22,13 @@ exports.signup = async (req, res) => {
         // 400 Bad Request response status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error (for example, malformed request syntax, invalid request message framing, or deceptive request routing).
     }
 
-    await User.create({ name, email, password })
+    const saltrounds = 10;
+    bcrypt.hash(password, saltrounds, async (err, hash) => {
+        console.log(err)
+        await User.create({ name, email, password: hash }) // hash password
         res.status(201).json({message: 'Successfuly create new user'})
         // 201 Created success status response code indicates that the request has succeeded and has led to the creation of a resource.
+    })
     } catch(err) {
         res.status(500).json(err);
         // 500 Internal Server Error server error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
@@ -43,12 +49,18 @@ exports.login = async (req, res) => {
 
     const user = await User.findAll({ where : { email }})
         if(user.length > 0){
-            if(user[0].password === password){
-                res.status(200).json({ success: true, message: 'User Logged In Successfully'})
-                // 200 OK success status response code indicates that the request has succeeded.
-            } else {
-                return res.status(400).json({ success: false, message: 'Password Is Incorrect'})
-            } 
+            bcrypt.compare(password, user[0].password, (err, result) => {
+                if(err){
+                    res.status(500).json({success: false, message: 'Something went wrong'})
+                }
+                // if we got correct password and Logged In Successfully. it mean result is true.
+                if(result === true){
+                    res.status(200).json({ success: true, message: 'User Logged In Successfully'})
+                    // 200 OK success status response code indicates that the request has succeeded.
+                } else {
+                    return res.status(400).json({ success: false, message: 'Password Is Incorrect'})
+                } 
+            })
          } else {
             return res.status(404).json({ success: false, message: 'User Does Not Exist'})
             // 404 Not Found response status code indicates that the server cannot find the requested resource.
