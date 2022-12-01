@@ -13,6 +13,9 @@ const userRoute = require('./routes/userRoutes');
 // use routes '/user' automatically add 'user' before link.
 app.use('/user', userRoute);
 
+const expenseRoutes = require('./routes/expenseRoutes');
+app.use('/expense', expenseRoutes);
+
 // This method is used to parse the incoming requests with JSON payloads and is based upon the bodyparser.
 app.use(express.json());
 
