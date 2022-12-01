@@ -9,9 +9,9 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 // Import
-const userRoute = require('./routes/userRoutes');
+const userRoutes = require('./routes/userRoutes');
 // use routes '/user' automatically add 'user' before link.
-app.use('/user', userRoute);
+app.use('/user', userRoutes);
 
 const expenseRoutes = require('./routes/expenseRoutes');
 app.use('/expense', expenseRoutes);
@@ -22,6 +22,13 @@ app.use(express.json());
 // It allows a server to indicate any origins (domain, scheme, or port) other than its own from which a browser should permit loading resources.
 var cors = require("cors");
 app.use(cors());
+
+// Relation
+const User = require('./models/users');
+const Expense = require('./models/expense');
+
+User.hasMany(Expense);
+Expense.belongsTo(User);
 
 // if database sync then start the server.
 const sequelize = require('./util/database');
