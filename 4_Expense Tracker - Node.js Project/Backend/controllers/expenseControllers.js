@@ -42,3 +42,20 @@ exports.getExpense = (req, res) => {
   }
 }
 
+// Delete
+exports.deleteExpense = (req, res) => {
+  const expenseid = req.params.expenseid;
+  
+  // if expenseid is Validation / Missing.
+  if(isstringinvalid(expenseid)) {
+    return res.status(400).json({success: false, message: 'Error Expense Id'})
+    // 400 Bad Request response status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error (for example, malformed request syntax, invalid request message framing, or deceptive request routing).
+  
+  }
+  Expense.destroy({ where: { id: expenseid }}).then(() => {
+    return res.status(200).json({ success: true, message: 'Deleted Successfully'})
+  }).catch(err => {
+    console.log(err);
+    return res.status(500).json({ success: true, message: 'Failed'})
+  })
+}

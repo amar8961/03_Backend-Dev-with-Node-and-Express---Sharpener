@@ -4,17 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Full stack Expense App</title>
+    <title>Expense App</title>
     <link rel="stylesheet" href="../style.css">
   </head>
   <body>
-    <header class="main-header">
-      <nav class="main-header__nav">
+    <header>
+      <nav>
         <h2>Expense App</h2>
       </nav>
     </header>
 
-    <main>
+    <main style="border: 5px red solid; background-color: orange; ">
       <form class="form" action="#" onsubmit="saveToLocalStorage(event)">
         <div class="form-control">
           <label>Choose Expenses Amount</label>
@@ -32,7 +32,7 @@
         <button type="submit">Submit</button>
       </form><br>
       <hr width="100%" size="5px" style="background-color: black" />
-      <ul id="expenseTracker"></ul>
+      <ul style="margin-top: 20px; margin-left: 50px; margin-bottom: 20px;" id="expenseTracker"></ul>
   </main>
 
     <!-- axios - for network call --> 
