@@ -1,6 +1,7 @@
 // Import
 const User = require('../models/users')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 // for string validation
 function isstringinvalid(string) {
@@ -55,7 +56,7 @@ exports.login = async (req, res) => {
                 }
                 // if we got correct password and Logged In Successfully. it mean result is true.
                 if(result === true){
-                    res.status(200).json({ success: true, message: 'User Logged In Successfully'})
+                    res.status(200).json({ success: true, message: 'User Logged In Successfully', token: generateAccessToken(user[0].id)})
                     // 200 OK success status response code indicates that the request has succeeded.
                 } else {
                     return res.status(400).json({ success: false, message: 'Password Is Incorrect'})
@@ -69,4 +70,9 @@ exports.login = async (req, res) => {
         res.status(500).json({message: err, success: false})
         // 500 Internal Server Error server error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
     }
+}
+
+// Generate Token
+function generateAccessToken(id) {
+    return jwt.sign({ userId : id}, 'secretkey')
 }

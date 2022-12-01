@@ -2,6 +2,10 @@
 const express = require('express');
 const app = express();
 
+// It allows a server to indicate any origins (domain, scheme, or port) other than its own from which a browser should permit loading resources.
+var cors = require("cors");
+app.use(cors());
+
 // It provides four express middleware for parsing JSON, Text, URL-encoded, and raw data sets over an HTTP request body.
 const bodyParser = require('body-parser');
 // The "extended" syntax allows for rich objects and arrays to be encoded into the URL-encoded format, allowing for a JSON-like experience with URL-encoded.
@@ -18,10 +22,6 @@ app.use('/expense', expenseRoutes);
 
 // This method is used to parse the incoming requests with JSON payloads and is based upon the bodyparser.
 app.use(express.json());
-
-// It allows a server to indicate any origins (domain, scheme, or port) other than its own from which a browser should permit loading resources.
-var cors = require("cors");
-app.use(cors());
 
 // Relation
 const User = require('./models/users');
