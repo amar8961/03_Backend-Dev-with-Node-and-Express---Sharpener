@@ -20,6 +20,12 @@ app.use('/user', userRoutes);
 const expenseRoutes = require('./routes/expenseRoutes');
 app.use('/expense', expenseRoutes);
 
+// Order -> Razorpay
+const Order = require('./models/orders');
+const purchaseRoutes = require('./routes/purchaseRoutes')
+app.use('/purchase', purchaseRoutes)
+
+
 // This method is used to parse the incoming requests with JSON payloads and is based upon the bodyparser.
 app.use(express.json());
 
@@ -29,6 +35,8 @@ const Expense = require('./models/expense');
 
 User.hasMany(Expense);
 Expense.belongsTo(User);
+User.hasMany(Order);
+Order.belongsTo(User);
 
 // if database sync then start the server.
 const sequelize = require('./util/database');
