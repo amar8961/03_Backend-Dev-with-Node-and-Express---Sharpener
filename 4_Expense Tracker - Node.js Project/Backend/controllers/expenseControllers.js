@@ -9,6 +9,7 @@ function isstringinvalid(string) {
     }
 }
 
+// Add Expense
 exports.addExpense = async (req, res) => {
   try {
     const { expenseamount, description, category } = req.body;
@@ -29,3 +30,15 @@ exports.addExpense = async (req, res) => {
     // 500 Internal Server Error server error response code
   }
 };
+
+// Get Expense
+exports.getExpense = (req, res) => {
+  try{
+  Expense.findAll().then(expenses => {
+    return res.status(200).json({expenses, success:true})
+  })
+  }catch(err) {
+    return res.status(500).json({ error: err, success: false})
+  }
+}
+

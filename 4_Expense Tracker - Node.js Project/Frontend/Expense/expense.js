@@ -18,3 +18,28 @@ async function saveToLocalStorage(e) {
         document.body.innerHTML += `<div style="color:red;">${err} </div>`
     }
 }
+
+// DOMContentLoaded
+window.addEventListener('DOMContentLoaded', async () => {
+    try{
+        await axios.get('http://localhost:3000/expense/getExpense').then(response => {
+            response.data.expenses.forEach(expense => {
+                addNewExpensetoUI(expense);
+            })
+        })
+    } catch(err){
+        console.log(err)
+
+    }
+})
+
+// Show Expense to DOM / UI
+function addNewExpensetoUI(expense) {
+    const parentElement = document.getElementById('expenseTracker');
+    const expenseElemId = `expense-${expense.id}`;
+    parentElement.innerHTML += `
+        <li id=${expenseElemId}>
+            ${expense.expenseamount} - ${expense.category} - ${expense.description}
+            
+        </li>`
+}
