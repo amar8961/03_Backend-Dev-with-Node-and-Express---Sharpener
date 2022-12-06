@@ -56,8 +56,16 @@ exports.login = async (req, res) => {
                 }
                 // if we got correct password and Logged In Successfully. it mean result is true.
                 if(result === true){
-                    res.status(200).json({ success: true, message: 'User Logged In Successfully', token: generateAccessToken(user[0].id)})
+                    // res.status(200).json({ success: true, message: 'User Logged In Successfully', token: generateAccessToken(user[0].id)})
                     // 200 OK success status response code indicates that the request has succeeded.
+                    if(user[0].ispremiumuser === true){
+                        // check prime user or not
+                        console.log("PRIME USER")
+                        res.status(200).json({ success: true, message: 'GOT PRIME USER', token: generateAccessToken(user[0].id) })
+                    } else {
+                        console.log("NOT A PRIME USER")
+                        res.status(200).json({ success: false, message: 'NON PRIME USER', token: generateAccessToken(user[0].id) })
+                    }
                 } else {
                     return res.status(400).json({ success: false, message: 'Password Is Incorrect'})
                 } 

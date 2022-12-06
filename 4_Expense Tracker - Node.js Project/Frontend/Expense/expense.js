@@ -105,7 +105,8 @@ document.getElementById('rzp-button1').onclick = async function (e) {
              order_id: options.order_id,
              payment_id: response.razorpay_payment_id,
          }, { headers: {"Authorization" : token} }).then(() => {
-             alert('You are a Premium User Now')             
+             alert('You are a Premium User Now')
+             window.location.href = "../Expense/expensePrimeUser.html" // change the page on successful login
          }).catch(() => {
              alert('Something went wrong. Try Again!!!')
          })

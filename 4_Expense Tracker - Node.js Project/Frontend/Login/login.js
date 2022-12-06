@@ -11,10 +11,16 @@ async function login(e) {
 
     await axios.post('http://localhost:3000/user/login', loginDetails).then(response => {
         alert(response.data.message)
+        // console.log(response)
         localStorage.setItem('token', response.data.token) // to save the token in local storage.
         if(response.status === 200) {
             // 200 OK success status response code indicates that the request has succeeded.
-            window.location.href = "../Expense/expense.html" // change the page on successful login
+            if(response.data.success === true){
+                console.log("GOT PRIME ONE")
+                window.location.href = "../Expense/expensePrimeUser.html" // change the page on successful login
+            } else {
+                window.location.href = "../Expense/expense.html" // change the page on successful login
+            }
         } else {
             throw new ErrorEvent('Failed to login')
         }
