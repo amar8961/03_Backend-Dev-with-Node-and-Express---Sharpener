@@ -29,14 +29,21 @@ app.use('/purchase', purchaseRoutes)
 // This method is used to parse the incoming requests with JSON payloads and is based upon the bodyparser.
 app.use(express.json());
 
+// import resetPassword routes
+const resetPasswordRoutes = require('./routes/resetPassword')
+app.use('/password', resetPasswordRoutes);
+
 // Relation
 const User = require('./models/users');
 const Expense = require('./models/expense');
+const Forgotpassword = require('./models/forgotPassword');
 
 User.hasMany(Expense);
 Expense.belongsTo(User);
 User.hasMany(Order);
 Order.belongsTo(User);
+User.hasMany(Forgotpassword);
+Forgotpassword.belongsTo(User);
 
 // if database sync then start the server.
 const sequelize = require('./util/database');
