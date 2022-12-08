@@ -81,6 +81,27 @@ function showError(err){
     document.body.innerHTML += `<div style="color:red;"> ${err}</div>`
 }
 
+// Download Expense
+function download(){
+    axios.get('http://localhost:3000/user/download', { headers: {"Authorization" : token} })
+    .then((response) => {
+        if(response.status === 201){
+            //the bcakend is essentially sending a download link
+            //  which if we open in browser, the file would download
+            var a = document.createElement("a");
+            a.href = response.data.fileUrl;
+            a.download = 'myexpense.csv';
+            a.click();
+        } else {
+            throw new Error(response.data.message)
+        }
+
+    })
+    .catch((err) => {
+        showError(err)
+    });
+}
+
 // Rozorpay
 document.getElementById('rzp-button1').onclick = async function (e) {
     const response  = await axios.get('http://localhost:3000/purchase/premiummembership', { headers: {"Authorization" : token} });
@@ -88,12 +109,12 @@ document.getElementById('rzp-button1').onclick = async function (e) {
     var options =
     {
      "key": response.data.key_id, // Enter the Key ID generated from the Dashboard
-     "name": "Test Company",
+     "name": "AK Star",
      "order_id": response.data.order.id, // For one time payment
      "prefill": {
-       "name": "Test User",
-       "email": "test.user@example.com",
-       "contact": "7003442036"
+       "name": "Amar Kumar",
+       "email": "amarkumar8961@gmail.com",
+       "contact": "0000000000"
      },
      "theme": {
       "color": "#3399cc"
