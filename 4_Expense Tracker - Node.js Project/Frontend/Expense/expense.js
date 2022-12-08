@@ -83,11 +83,11 @@ function showError(err){
 
 // Download Expense
 function download(){
-    axios.get('http://localhost:3000/user/download', { headers: {"Authorization" : token} })
+    axios.get('http://localhost:3000/expense/download', { headers: {"Authorization" : token } })
     .then((response) => {
         if(response.status === 201){
-            //the bcakend is essentially sending a download link
-            //  which if we open in browser, the file would download
+            // the bcakend is essentially sending a download link
+            // which if we open in browser, the file would download
             var a = document.createElement("a");
             a.href = response.data.fileUrl;
             a.download = 'myexpense.csv';
