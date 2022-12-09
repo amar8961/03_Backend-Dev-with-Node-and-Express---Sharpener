@@ -74,7 +74,7 @@ exports.downloadExpenses =  async (req, res) => {
       if(!req.user.ispremiumuser){
           return res.status(401).json({ success: false, message: 'User is not a premium User'})
       }
-      const AZURE_STORAGE_CONNECTION_STRING = 'Enter Your AZURE STORAGE CONNECTION STRING'; // check this in the task. I have put mine. Never push it to github.
+      const AZURE_STORAGE_CONNECTION_STRING = process.env.AZURE ; // check this in the task. I have put mine. Never push it to github.
       // Create the BlobServiceClient object which will be used to create a container client
       const blobServiceClient = BlobServiceClient.fromConnectionString(AZURE_STORAGE_CONNECTION_STRING);
 

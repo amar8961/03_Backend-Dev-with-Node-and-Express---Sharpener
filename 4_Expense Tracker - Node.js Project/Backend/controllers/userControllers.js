@@ -82,5 +82,5 @@ exports.login = async (req, res) => {
 
 // Generate Token
 function generateAccessToken(id) {
-    return jwt.sign({ userId : id}, 'secretkey')
+    return jwt.sign({ userId : id}, process.env.BCRYPT_SECRETKEY )
 }

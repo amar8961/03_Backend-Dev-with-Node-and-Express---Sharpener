@@ -16,7 +16,7 @@ const forgotpassword = async (req, res) => {
                     throw new Error(err)
                 })
 
-            API_KEY = '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'    
+            API_KEY = process.env.SEND_GRID_API_KEY    
 
             sgMail.setApiKey(API_KEY)
 

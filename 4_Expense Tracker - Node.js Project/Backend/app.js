@@ -6,6 +6,13 @@ const app = express();
 var cors = require("cors");
 app.use(cors());
 
+// Impoet helmet
+const helmet=require('helmet')
+app.use(helmet())
+
+// Import env
+require('dotenv').config();
+
 // It provides four express middleware for parsing JSON, Text, URL-encoded, and raw data sets over an HTTP request body.
 const bodyParser = require('body-parser');
 // The "extended" syntax allows for rich objects and arrays to be encoded into the URL-encoded format, allowing for a JSON-like experience with URL-encoded.
@@ -53,7 +60,7 @@ sequelize
   .sync()
   // sync() is used to synchronize your Sequelize model with your database tables.
   .then(() => {
-    app.listen(3000);
+    app.listen(process.env.PORT || 3000);
   })
   .catch(err => {
     console.log(err);
