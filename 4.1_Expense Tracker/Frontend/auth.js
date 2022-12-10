@@ -55,7 +55,8 @@ function signUp(){
         }
         else{
             alert("Sign Up Successful")
-            window.location.replace("./index.html");
+            // window.location.replace("./index.html");
+            document.getElementById('email-in').value=email
         }
     }).catch(err=>console.log(err))
 }
@@ -90,7 +91,7 @@ function signIn(){
             alert("Your email is not registered with us!")
         }else if(response.data.code==1){
             alert("Sign In Successful!")
-            sessionStorage.setItem('auth', JSON.stringify({authenticated:true, email:email}))
+            sessionStorage.setItem('auth', JSON.stringify({token:response.data.token}))
             location.replace('./index.html')
         }
     }).catch(err=>console.log(err))
@@ -102,7 +103,7 @@ function checkAuthState(){
     state=JSON.parse(sessionStorage.getItem('auth'))
     if (state==null||state==undefined||state==''){
         return
-    }else if(state.authenticated){
+    }else if(state.token){
         location.replace('./index.html')
     }else{
         return
