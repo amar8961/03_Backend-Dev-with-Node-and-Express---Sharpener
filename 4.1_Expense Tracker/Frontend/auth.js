@@ -61,29 +61,34 @@ function signUp(){
 }
 
 // Sign in
-signInBtn.addEventListener('click', signIn)
-
 function signIn(){
     const email=document.getElementById('email-in').value
     const password=document.getElementById('pass-in').value
     if (email.length<5 || email.indexOf('@')==-1){
         alert("Enter a valid email!")
         return
+    }else if(password.length<3){
+        alert("Enter a valid password!")
+        return
     }
     else{
         document.getElementById('email-in').value=""
         document.getElementById('pass-in').value=""
     }
+    let creds={
+        email: email,
+        password:password
+    }
     axios({
         method: 'get',
-        url: `${UserUrl}/${email}`,
+        url: `${UserUrl}/${JSON.stringify(creds)}`,
     }).then(response=>{
         console.log(response)
-        if (response.data==""){
+        if (response.data.code==2){
+            alert("You have entered an Invalid Password!")
+        }else if(response.data.code==0){
             alert("Your email is not registered with us!")
-        }else if(response.data.password!==password){
-            alert("You've entered an incorrect password!")
-        }else{
+        }else if(response.data.code==1){
             alert("Sign In Successful!")
             location.replace('./index.html')
         }
