@@ -4,14 +4,19 @@ var url="http://localhost:4000/expensesData"
 let amountInput=document.getElementById('amount')
 let descInput=document.getElementById('desc')
 let catgInput=document.getElementById('catg')
+let UserUrl="http://localhost:4000/users"
+var RazorPayKeyID='rzp_test_zbZh5SCKZukxtS'
+var RazorPayKeySecret='s570C2IJRbUBbMGpccBg89JS'
 
 //button
 let addBtn=document.getElementById('addBtn')
 let logoutBtn=document.getElementById('logout')
+let darkBtn=document.getElementById('premium')
 
 //Event Listeners
 addBtn.addEventListener('click', addExpense)
 logoutBtn.addEventListener('click', logout)
+darkBtn.addEventListener('click', handlePayment)
 
 //Check if already Logged In
 function checkAuthState(){
@@ -47,6 +52,10 @@ async function addExpense(e){
     else if (desc=="" || catg==""){
         alert("Enter valid description and category!")
         return
+    }else{
+        amountInput.value=""
+        descInput.value=""
+        catgInput.value=""
     }
 
     await axios({
@@ -61,11 +70,10 @@ async function addExpense(e){
     }).then((response)=>{
         console.log(response)
         if(response.status==201){
-            location.reload()
+            displayList()
         }
     }).catch(err=>console.log(err))
 
-    
 }
 
 //function for Deleting Expense
@@ -77,7 +85,7 @@ async function deleteExpense(event){
             method: 'delete',
             url: `${url}/${event.target.id}`,
         })
-        location.reload()
+        displayList()
     }
     catch(err){
         console.log(err)
@@ -138,10 +146,10 @@ function editExpense(event){
     }
 }
 
-
+// Display Expense
 function displayList() {
     let listGroup=document.getElementById('list')
-
+    listGroup.innerHTML=""
     let getRequest=async()=>await axios({
         method: 'get',
         url: url,
@@ -184,6 +192,7 @@ function displayList() {
             delBtn[i].addEventListener('click', deleteExpense)
             editBtn[i].addEventListener('click', editExpense)
         }
+        checkPremium()
         }
     }).catch(err=>console.log(err))
     getRequest()
@@ -191,4 +200,92 @@ function displayList() {
 
 //Display the List of Expenses
 // displayList()
-window.addEventListener('DOMContentLoaded', displayList)
+window.addEventListener('DOMContentLoaded', ()=>{
+    displayList()
+})
+
+// RazorPay
+function handlePayment(){
+    var options = {
+        "key": RazorPayKeyID, 
+        "amount": "9900",
+        "currency": "INR",
+        "name": "Premium Membership",
+        "description": "Buy Expense Tracker Premium Membership",
+        "handler": function (response){
+            alert("Payment was successful!")
+            createPremium()
+        },
+        "prefill": {
+            "name": "Amar Kumar",
+            "email": "amarkumar8961@gmail.com",
+            "contact": "9999999999"
+        },
+        "notes": {
+            "address": "Razorpay Corporate Office"
+        },
+        "theme": {
+            "color": "#3399cc"
+        },
+    };
+    var rzp1=new Razorpay(options)
+    rzp1.open();
+    rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+    })
+}
+
+// Create Premium
+function createPremium(){
+    axios({
+        method: 'put',
+        url: `${UserUrl}`,
+        headers: {"Authorization":state.token}
+    }).then(response=>{
+        if(response.data.isPremium){
+            isPremium()
+        }
+    }).catch(err=>console.log(err))
+}
+
+// if Premium run toggleMode()
+var isPremium=()=>{
+    toggleMode()
+    darkBtn.style.visibility='hidden'
+};
+
+// Toggle Mode
+function toggleMode(){
+    document.body.classList.add('dark')
+    document.querySelector('.inc-exp-container').classList.add('dark')
+    let inputs=document.querySelectorAll('input')
+    for (let i=0; i<inputs.length; i++){
+        inputs[i].classList.add('dark')
+    }
+    let historyItems=document.querySelectorAll('.list li')
+    for (let i=0; i<historyItems.length; i++){
+        historyItems[i].classList.add('dark')
+    }
+}
+
+// Check Premium
+function checkPremium(){
+    axios({
+        method: 'get',
+        url: `${UserUrl}`,
+        headers:{"Authorization":state.token}
+    }).then(response=>{
+        if(response.data.isPremium){
+            isPremium()
+        }
+        else{
+            return
+        }
+    }).catch(err=>console.log(err))
+}

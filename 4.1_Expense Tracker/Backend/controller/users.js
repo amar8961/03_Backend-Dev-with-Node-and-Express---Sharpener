@@ -13,7 +13,8 @@ exports.createUser=(req, res, next)=>{
             where: {email:req.body.email},
             defaults: {
                 name: req.body.name,
-                password: hash
+                password: hash,
+                isPremium: false
         }}).then(response=>{
             res.status(201).send(response)
         }).catch(err=>console.log(err))
@@ -42,4 +43,24 @@ exports.findUser=(req, res, next)=>{
 // Token Generate
 function generateToken(email){
     return (jwt.sign({email:email}, 'myExpenseTracker'))
+}
+
+// Update user to prime
+exports.updateUser=(req, res, next)=>{
+    Users.findOne({where: {email:req.user.email}}).then(user=>{
+        user.isPremium=true
+        return user.save()
+    }).catch(err=>console.log(err)).then(response=>{
+        res.status(200).send(response.isPremium)
+    }).catch(err=>console.log(err))
+}
+
+// Get prime users
+exports.isPremium=(req, res, next)=>{
+    console.log(req.user)
+    if(req.user.isPremium){
+        res.status(200).send({isPremium:req.user.isPremium})
+    }else{
+        res.status(200).send({isPremium:req.user.isPremium})
+    }
 }
