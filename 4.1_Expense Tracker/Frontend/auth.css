@@ -250,3 +250,15 @@ footer a {
     color: #3c97bf;
     text-decoration: none;
 }
+
+.form__link{
+    cursor: pointer;
+}
+
+.form__link {
+    color: #181818;
+    font-size: 15px;
+    margin-top: 25px;
+    border-bottom: 1px solid #a0a5a8;
+    line-height: 2;
+}

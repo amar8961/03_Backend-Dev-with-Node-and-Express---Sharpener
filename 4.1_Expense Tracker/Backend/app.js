@@ -10,6 +10,7 @@ const expensesRoutes=require('./routes/expenses');
 const authRoutes=require('./routes/users');
 
 app.use(bodyParser.json({extended:false}))
+app.use(bodyParser.urlencoded({extended:false}))
 app.use(expensesRoutes)
 app.use(authRoutes)
 

@@ -15,9 +15,12 @@ signInButton.addEventListener('click', () => {
 let UserUrl="http://localhost:4000/users"
 let signUpBtn=document.getElementById("sign-up-btn")
 let signInBtn=document.getElementById("sign-in-btn")
+let forgotPassUrl="http://localhost:4000/forgotPassword/"
+let forgotBtn=document.getElementById('forgot-password')
 
 signUpBtn.addEventListener('click', signUp)
 signInBtn.addEventListener('click', signIn)
+forgotBtn.addEventListener('click', forgotPassword)
 
 // Sign up
 function signUp(){
@@ -111,3 +114,28 @@ function checkAuthState(){
 }
 
 checkAuthState()
+
+// Forgot Password
+function forgotPassword(){
+    forgotBtn.style.display='none'
+    signInBtn.removeEventListener('click', signIn)
+    signInBtn.innerHTML="Reset Password"
+    signInBtn.addEventListener('click', sendResetMail)
+    document.getElementById('pass-in').style.display='none'
+}
+
+function sendResetMail(){
+    let email=document.getElementById('email-in').value
+    if(email.indexOf('@')==-1){
+        alert("Enter a valid Email!")
+    }
+    axios({
+        method: 'get',
+        url: `${forgotPassUrl}${email}`
+    }).then(response=>{
+        if(response.data.sent==true){
+            alert("Password Reset Mail has been sent!")
+            location.reload()
+        }
+    }).catch(err=>console.log(err))
+}
