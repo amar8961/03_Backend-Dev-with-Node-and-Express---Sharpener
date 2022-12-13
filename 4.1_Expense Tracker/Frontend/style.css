@@ -332,3 +332,16 @@ label {
 .list li:hover .edit-btn {
     opacity: 1;
   }
+
+  /* Download Expense Button */
+  #downloadBtn{
+    display: none;
+    margin: 0 1rem;
+    cursor: pointer;
+    transition: font-size .1s linear;
+  }
+  
+  #downloadBtn:hover{
+    font-size: 1.3rem;
+    color: #2ecc71;
+  }

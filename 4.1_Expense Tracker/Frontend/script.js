@@ -7,6 +7,7 @@ let catgInput=document.getElementById('catg')
 let UserUrl="http://localhost:4000/users"
 var RazorPayKeyID='rzp_test_zbZh5SCKZukxtS'
 var RazorPayKeySecret='s570C2IJRbUBbMGpccBg89JS'
+var downloadUrl="http://localhost:4000/download"
 
 //button
 let addBtn=document.getElementById('addBtn')
@@ -258,6 +259,9 @@ function createPremium(){
 var isPremium=()=>{
     toggleMode()
     darkBtn.style.visibility='hidden'
+    var download=document.getElementById('downloadBtn')
+    download.style.display="inline-block"
+    download.addEventListener('click', downloadExpenses)
 };
 
 // Toggle Mode
@@ -287,5 +291,27 @@ function checkPremium(){
         else{
             return
         }
+    }).catch(err=>console.log(err))
+}
+
+// Download Expense
+function downloadExpenses(e){
+    e.preventDefault()
+    axios({
+        method:'get',
+        url: downloadUrl,
+        headers: {Authorization:state.token},
+        responseType: 'blob', // important
+    }).then(response=>{
+        const href = URL.createObjectURL(response.data);
+        const link = document.createElement('a');
+        link.href = href;
+        link.setAttribute('download', 'expenses.txt'); //or any other extension
+        document.body.appendChild(link);
+        link.click();
+        // clean up "a" element & remove ObjectURL
+        document.body.removeChild(link);
+        URL.revokeObjectURL(href);
+        console.log(response)
     }).catch(err=>console.log(err))
 }
