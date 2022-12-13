@@ -8,16 +8,19 @@ let UserUrl="http://localhost:4000/users"
 var RazorPayKeyID='rzp_test_zbZh5SCKZukxtS'
 var RazorPayKeySecret='s570C2IJRbUBbMGpccBg89JS'
 var downloadUrl="http://localhost:4000/download"
+var urlPages="http://localhost:4000/pages"
 
 //button
 let addBtn=document.getElementById('addBtn')
 let logoutBtn=document.getElementById('logout')
 let darkBtn=document.getElementById('premium')
+let rows=document.getElementById('rows')
 
 //Event Listeners
 addBtn.addEventListener('click', addExpense)
 logoutBtn.addEventListener('click', logout)
 darkBtn.addEventListener('click', handlePayment)
+rows.addEventListener('input', changePages)
 
 //Check if already Logged In
 function checkAuthState(){
@@ -169,9 +172,7 @@ function displayList(e) {
             return
         }
         else{
-            let inflow=0, outflow=0
             res.data.response.map((expenseDetails)=>{
-            expenseDetails.amount>0?inflow+=parseFloat(expenseDetails.amount):outflow+=parseFloat(expenseDetails.amount)
             let listItem=document.createElement('li')
             let span=document.createElement('span')
             let amountItem=document.createTextNode(expenseDetails.amount>0?`+₹${(expenseDetails.amount*1).toLocaleString('en-IN')}`:`-₹${(expenseDetails.amount*-1).toLocaleString('en-IN')}`)
@@ -194,6 +195,7 @@ function displayList(e) {
         })
         var buttonList=document.querySelector('.pages-container')
         buttonList.innerHTML=""
+        
         if(res.data.lastPage===2){
             if(res.data.hasPreviousPage){
                 let button=document.createElement('button')
@@ -237,8 +239,8 @@ function displayList(e) {
             }
         }
         buttonList.addEventListener('click', displayList)
-        document.getElementById('money-minus').textContent=`-₹${parseFloat(outflow*-1).toLocaleString('en-IN')}`
-        document.getElementById('money-plus').textContent=`+₹${parseFloat(inflow).toLocaleString('en-IN')}`
+        document.getElementById('money-minus').textContent=`-₹${parseFloat(res.data.negative*-1).toLocaleString('en-IN')}`
+        document.getElementById('money-plus').textContent=`+₹${parseFloat(res.data.positive*1).toLocaleString('en-IN')}`
         let delBtn=document.querySelectorAll('.delete-btn')
         let editBtn=document.querySelectorAll('.edit-btn')
         for (let i=0; i<delBtn.length; i++){
@@ -249,6 +251,17 @@ function displayList(e) {
         }
     }).catch(err=>console.log(err))
     getRequest()
+}
+
+// Records per page
+function changePages(){
+    const val=parseInt(rows.value)
+    axios({
+        method: 'get',
+        url: `${urlPages}/${val}`
+    }).then(response=>{
+        displayList()
+    }).catch(err=>console.log(err))
 }
 
 //Display the List of Expenses
