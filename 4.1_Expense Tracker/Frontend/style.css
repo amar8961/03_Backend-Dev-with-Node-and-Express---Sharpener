@@ -187,8 +187,10 @@ label {
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
+  height: 12rem;
   width: 100%;
   align-items: center;
+  transition: height .5s ease-in-out;
 }
 
 
@@ -344,4 +346,27 @@ label {
   #downloadBtn:hover{
     font-size: 1.3rem;
     color: #2ecc71;
+  }
+
+  /* Pagination */
+  .pages-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .pages-container button{
+    background-color: #3b4557;
+    color: white;
+    border: none;
+    border-radius: .4rem;
+    font-size: 1rem;
+    margin: 0 .5rem;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    transition: padding .2s linear;
+  }
+  
+  .pages-container button:hover{
+    padding: .7rem 1.5rem;
   }
